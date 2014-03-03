@@ -5,11 +5,11 @@ import org.pircbotx.PircBotX;
 import com.chcmatt.katelyn.handling.CommandEvent;
 
 @Command(name="admins", desc="Lists the current bot admins.", adminOnly=false)
-public class listAdmins extends GenericCommand
+public class Admins extends GenericCommand
 {
 	private CommandEvent<PircBotX> event;
 	
-	public listAdmins(CommandEvent<PircBotX> event)
+	public Admins(CommandEvent<PircBotX> event)
 	{
 		super(event);
 		this.event = event;

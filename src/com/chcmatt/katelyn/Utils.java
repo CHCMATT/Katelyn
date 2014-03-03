@@ -29,6 +29,8 @@ public class Utils
 		i.set("dao",  bot.getUserChannelDao());
 		i.set("admins", bot.getConfiguration().getAdminAccounts().toString());
 		i.set("cmdReg", bot.getCommandRegistry());
+		i.eval("import org.pircbotx.Colors");
+		i.eval("import java.text.*");
 		
 		return i;
 	}

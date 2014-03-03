@@ -18,6 +18,6 @@ public class Say extends GenericCommand
 	@Override
 	public void execute()
 	{
-		event.respond(event.getArgString());
+		event.respond(event.getUser().getNick() + ": " + event.getArgString());
 	}
 }
