@@ -24,7 +24,7 @@ public class CommandRegistry<T extends GenericCommand>
 		this.bot = bot;
 		this.commands = new HashSet<CommandInfo<T>>();
 		
-		Reflections reflections = new Reflections("com.r2d2warrior.c3p0j.commands");
+		Reflections reflections = new Reflections("com.chcmatt.katelyn.commands");
 		Command cmd;
 		for (Class<?> cls : reflections.getTypesAnnotatedWith(Command.class))
 		{
