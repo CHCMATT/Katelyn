@@ -4,7 +4,7 @@ import org.pircbotx.PircBotX;
 
 import com.chcmatt.katelyn.handling.CommandEvent;
 
-@Command(name="join", desc="Joins specified channel", requiresArgs = true, adminOnly=true)
+@Command(name="join", desc="Joins specified channel", syntax = "join <#channel>", requiresArgs = true, adminOnly=true)
 public class Join extends GenericCommand
 {
 	

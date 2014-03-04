@@ -10,7 +10,7 @@ import org.pircbotx.Colors;
 import com.chcmatt.katelyn.handling.CommandEvent;
 import com.chcmatt.katelyn.handling.CommandInfo;
 
-@Command(name="help", desc="Displays command list or command information")
+@Command(name="help", desc="Displays command list or command information", syntax="help [command]")
 public class Help extends GenericCommand
 {
 	
@@ -26,7 +26,7 @@ public class Help extends GenericCommand
 		
 		if (event.hasNoArgs())
 		{
-			event.respondToUser(Colors.BOLD + "Valid prefixes:" + Colors.BOLD + " Public message: \"" + prePublic + "\" Private notice: \"" + prePrivate +"\"");
+			event.respond(Colors.setBold("Valid prefixes: ") + "Public message: \"" + prePublic + "\" Private notice: \"" + prePrivate +"\"");
 			List<String> commandList = new ArrayList<String>();
 			List<String> adminCommands = new ArrayList<String>();
 			for (CommandInfo<GenericCommand> info : bot.getCommandRegistry().getCommands())
@@ -36,9 +36,9 @@ public class Help extends GenericCommand
 				else if (user.isAdmin())
 					adminCommands.add(info.getName());
 			}
-			event.respondToUser("Commands: " + StringUtils.join(commandList, ", "));
+			event.respond(Colors.setBold("Commands: ") + StringUtils.join(commandList, ", "));
 			if (user.isAdmin())
-				event.respondToUser("Admin Commands: " + StringUtils.join(adminCommands, ", "));
+				event.respondToUser(Colors.setBold("Admin Commands: ") + StringUtils.join(adminCommands, ", "));
 		}
 		else
 		{

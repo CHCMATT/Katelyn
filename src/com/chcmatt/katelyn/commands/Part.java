@@ -4,7 +4,7 @@ import org.pircbotx.PircBotX;
 
 import com.chcmatt.katelyn.handling.CommandEvent;
 
-@Command(name="part", desc="Parts current or specified channel", adminOnly=true)
+@Command(name="part", desc="Parts current or specified channel", syntax="part [#channel] [reason]", adminOnly=true)
 public class Part extends GenericCommand
 {
 	

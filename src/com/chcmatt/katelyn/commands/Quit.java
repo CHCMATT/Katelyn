@@ -4,7 +4,7 @@ import org.pircbotx.PircBotX;
 
 import com.chcmatt.katelyn.handling.CommandEvent;
 
-@Command(name="quit", desc="Quits the server the command is sent from.", adminOnly=true)
+@Command(name="quit", desc="Quits the server the command is sent from.", syntax="quit [reason]", adminOnly=true)
 public class Quit extends GenericCommand
 {
 	

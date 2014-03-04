@@ -8,7 +8,7 @@ import org.pircbotx.PircBotX;
 
 import com.chcmatt.katelyn.handling.CommandEvent;
 
-@Command(name="time", desc="Sends the current bot time.", adminOnly=true)
+@Command(name="time", desc="Sends the current bot time.", syntax="time [timezone]", adminOnly=true)
 public class Time extends GenericCommand
 {
 	
