@@ -11,8 +11,11 @@ public class ConnectMessage extends ListenerAdapter<PircBotX>
 {
 	public void onConnect(ConnectEvent<PircBotX> event)
 	{
-			//Waits 30 seconds before sending the message. (Enough time to /WHO all/most channels.)
-			Utils.wait(30000);
-			event.getBot().sendIRC().action("#Katelyn", "is now connected to the server.");
+		//Request capabilities that aren't correctly requested due to the BNC
+		event.getBot().sendCAP().request("account-notify", "extended-join");
+		
+		//Waits 30 seconds before sending the message. (Enough time to /WHO all/most channels.)
+		Utils.wait(30000);
+		event.getBot().sendIRC().action("#Katelyn", "is now connected to the server.");
 	}
 }
