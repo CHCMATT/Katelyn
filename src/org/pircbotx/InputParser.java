@@ -20,6 +20,7 @@ package org.pircbotx;
 
 import org.pircbotx.snapshot.UserSnapshot;
 
+import com.chcmatt.katelyn.handling.CommandEvent;
 import com.google.common.base.CharMatcher;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -414,8 +415,7 @@ public class InputParser implements Closeable {
 		} else if (code.equals("CAP")) {
 			//Handle CAP Code; remove extra from params
 			String capCommand = parsedLine.get(1);
-			//ImmutableList<String> capParams = ImmutableList.copyOf(StringUtils.split(parsedLine.get(2)));
-			ImmutableList<String> capParams = ImmutableList.of("account-notify", "extended-join", "multi-prefix");
+			ImmutableList<String> capParams = ImmutableList.copyOf(StringUtils.split(parsedLine.get(2)));
 			if (capCommand.equals("LS"))
 				for (CapHandler curCapHandler : configuration.getCapHandlers()) {
 					log.debug("Executing cap handler " + curCapHandler);
