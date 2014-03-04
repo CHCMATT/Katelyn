@@ -46,6 +46,18 @@ public class Utils
 		return i;
 	}
 	
+	public static void wait(int waitTime)
+	{
+		try
+		{
+			Thread.sleep(waitTime);
+		}
+		catch(InterruptedException ex)
+		{
+			Thread.currentThread().interrupt();
+		}
+	}
+	
 	public static String getRange(List<String> list, int start)
 	{
 		return getRange(list, start, list.size()-1);
