@@ -1,39 +1,35 @@
 package com.chcmatt.katelyn.utils;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
-
+import org.apache.commons.lang3.StringUtils;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.pircbotx.Colors;
 
 public class WebUtils
 {
-	public static Map<String, String> getLocationData(String ip)
+	public static Map<String, String> getLocationData(String ip) throws IOException, ParseException
 	{
-		String address = Colors.removeFormattingAndColors(String.format("http://geo.liamstanley.io/json/%s", ip));
-		try
+		String address = "http://geo.liamstanley.io/json/" + ip;
+		HttpURLConnection conn = (HttpURLConnection) new URL(address).openConnection();
+		JSONObject data =
+				(JSONObject)new JSONParser().parse(new InputStreamReader(conn.getInputStream()));
+		
+		Map<String, String> results = new HashMap<>();
+		for (Object o : data.keySet())
 		{
-			HttpURLConnection conn = (HttpURLConnection) new URL(address).openConnection();
-			Scanner in = new Scanner(conn.getInputStream());
-
-			String json = "";
-			while (in.hasNext())
-				json += in.nextLine();
-
-			JSONParser parser = new JSONParser();
-			@SuppressWarnings("unchecked")
-			Map<String, String> data = (Map<String, String>)parser.parse(json);
-			in.close();
-			return data;
+			String key = o.toString();
+			String val = data.get(key).toString();
+			if (val.equals("0") || StringUtils.isBlank(val))
+				results.put(key, "N/A");
+			else
+				results.put(key, Utils.toTitleCase(val));
 		}
-		catch (IOException | ParseException e)
-		{
-			e.printStackTrace();
-		}
-		return null;
+		return results;
 	}
 }
