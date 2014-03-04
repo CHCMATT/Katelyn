@@ -52,7 +52,7 @@ public class Katelyn
 		// All this just adds any class with @AddListener to the listeners
 		try
  		{
-			Reflections reflections = new Reflections("com.r2d2warrior.c3p0j.listeners");
+			Reflections reflections = new Reflections("com.chcmatt.katelyn.listeners");
 			for (Class<?> cls : reflections.getTypesAnnotatedWith(AddListener.class))
 			{
 				@SuppressWarnings("unchecked")
