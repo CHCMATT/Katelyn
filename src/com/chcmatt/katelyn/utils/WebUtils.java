@@ -6,16 +6,18 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.pircbotx.Colors;
 
 public class WebUtils
 {
 	public static Map<String, String> getLocationData(String ip) throws IOException, ParseException
 	{
-		String address = "http://geo.liamstanley.io/json/" + ip;
+		String address = Colors.removeFormattingAndColors("http://geo.liamstanley.io/json/" + ip);
 		HttpURLConnection conn = (HttpURLConnection) new URL(address).openConnection();
 		JSONObject data =
 				(JSONObject)new JSONParser().parse(new InputStreamReader(conn.getInputStream()));

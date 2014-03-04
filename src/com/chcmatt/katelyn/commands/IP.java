@@ -42,12 +42,12 @@ public class IP extends GenericCommand
 			else
 			{
 				event.respond(user.getNick() + ": " +
-							Colors.setColor("IP: ", Colors.DARK_BLUE + Colors.BOLD) + ip + " " +
-							Colors.setColor("City: ", Colors.DARK_BLUE + Colors.BOLD) + city + " " +
-							Colors.setColor("Region: ", Colors.DARK_BLUE + Colors.BOLD) + region + " " +
-							Colors.setColor("Country: ", Colors.DARK_BLUE + Colors.BOLD) + country + " " +
-							Colors.setColor("Zip Code: ", Colors.DARK_BLUE + Colors.BOLD) + zipcode + " " +
-							Colors.setColor("Latitude: ", Colors.DARK_BLUE + Colors.BOLD) + latitude + " " +
+							Colors.setColor("IP: ", Colors.DARK_BLUE + Colors.BOLD) + ip + " | " +
+							Colors.setColor("City: ", Colors.DARK_BLUE + Colors.BOLD) + city + " | " +
+							Colors.setColor("Region: ", Colors.DARK_BLUE + Colors.BOLD) + region + " | " +
+							Colors.setColor("Country: ", Colors.DARK_BLUE + Colors.BOLD) + country + " | " +
+							Colors.setColor("Zip Code: ", Colors.DARK_BLUE + Colors.BOLD) + zipcode + " | " +
+							Colors.setColor("Latitude: ", Colors.DARK_BLUE + Colors.BOLD) + latitude + " | " +
 							Colors.setColor("Longitude: ", Colors.DARK_BLUE + Colors.BOLD) + longitude);
 			}
 		}
