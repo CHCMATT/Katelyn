@@ -7,25 +7,38 @@ import com.chcmatt.katelyn.handling.CommandEvent;
 @Command(name="part", desc="Parts current or specified channel", adminOnly=true)
 public class Part extends GenericCommand
 {
-	private CommandEvent<PircBotX> event;
 	
 	public Part(CommandEvent<PircBotX> event)
 	{
 		super(event);
-		this.event = event;
 	}
 	
-	// TODO accept part message
 	public void execute()
 	{
-		String chan = (event.hasNoArgs()) ? event.getChannel().getName() : event.getCommandArgs().get(0);
+		String chan = (event.hasChannelArg()) ? event.getArgumentsList().get(0) : channel.getName();
+		String defaultMsg = "Parted by " + user.getNick();
+		String msg = "";
 		
-		if (event.getBot().getUserChannelDao().channelExists(chan))
+		if (event.hasNoArgs())
 		{
-			event.getBot().getUserChannelDao().getChannel(chan).send().part();
-			event.respondToUser("Trying to part channel: " + chan);
+			msg = defaultMsg;
 		}
 		else
-			event.respondToUser("I'm not in channel: " + chan);
+		{
+			if (event.hasChannelArg())
+			{
+				msg = (event.getArgumentsList().size() > 1) ? event.getArgRange(1) : defaultMsg;
+			}
+			else
+				msg = event.getArguments();
+		}
+		
+		if (userChannelDao.channelExists(chan))
+		{
+			event.respondToUser("Trying to part channel: " + chan);
+			userChannelDao.getChannel(chan).send().part(msg);
+		}
+		else
+			event.respondToUser("Not in channel: " + chan);
 	}
 }

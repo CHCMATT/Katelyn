@@ -23,20 +23,49 @@ public class CommandRegistry<T extends GenericCommand>
 	{
 		this.bot = bot;
 		this.commands = new HashSet<CommandInfo<T>>();
-		parseAnnotations();
-	}
-	
-	public void parseAnnotations()
-	{
-		Reflections reflections = new Reflections("com.chcmatt.katelyn");
+		
+		Reflections reflections = new Reflections("com.r2d2warrior.c3p0j.commands");
 		Command cmd;
 		for (Class<?> cls : reflections.getTypesAnnotatedWith(Command.class))
 		{
 			cmd = cls.getAnnotation(Command.class);
-			commands.add(
-					new CommandInfo<T>(cmd.name(), cmd.desc(), cmd.adminOnly(), cls)
-					);
+			commands.add(new CommandInfo<T>(cmd.name(), cmd.desc(), cmd.syntax(), cmd.adminOnly(), cmd.requiresArgs(), cls));
 		}
+	}
+	
+	public String executeCommand(CommandEvent<PircBotX> event)
+	{
+		String noPermissionError = "You don't have permission to use that command.";
+		//String doesntExistError = "Command does not exist: " + event.getCommandName();
+		String commandError = "Error while executing command: " + event.getCommandName();
+		String needsArgsError = "Error: This command needs arguments. SYNTAX: ";
+		
+		if (!isCommand(event.getCommandName()))
+			return "";
+		
+		Class<T> cls = getCommandClass(event.getCommandName());
+		CommandInfo<T> info = getCommandInfo(cls);
+		
+		if (info.isAdminOnly() && !event.getUser().isAdmin())
+			return noPermissionError;
+		
+		if (info.requiresArgs() && event.hasNoArgs())
+			return needsArgsError + info.getSyntax();
+		
+		try
+		{	
+			@SuppressWarnings("unchecked")
+			Constructor<T> constuct = (Constructor<T>) cls.getConstructors()[0];
+			constuct.setAccessible(true);
+
+			constuct.newInstance(event).execute();
+		}
+		catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e)
+		{
+			e.printStackTrace();
+			return commandError;
+		}
+		return "";
 	}
 	
 	public Class<T> getCommandClass(String name)
@@ -48,11 +77,11 @@ public class CommandRegistry<T extends GenericCommand>
 		return null;
 	}
 	
-	public CommandInfo<T> getCommandInfo(String name)
+	public String getCommandName(Class<T> cls)
 	{
 		for (CommandInfo<T> info : commands)
-			if (info.getName().equals(name))
-				return info;
+			if (info.getCommandClass().equals(cls))
+				return info.getName();
 		
 		return null;
 	}
@@ -66,49 +95,18 @@ public class CommandRegistry<T extends GenericCommand>
 		return null;
 	}
 	
+	public CommandInfo<T> getCommandInfo(String name)
+	{
+		return getCommandInfo(getCommandClass(name));
+	}
+	
 	public CommandInfo<T> getCommandInfo(CommandEvent<PircBotX> event)
 	{
 		return getCommandInfo(event.getCommandName());
 	}
-	
-	public String getCommandName(Class<T> cls)
-	{
-		for (CommandInfo<T> info : commands)
-			if (info.getCommandClass().equals(cls))
-				return info.getName();
-		
-		return null;
-	}
-	
+
 	public boolean isCommand(String name)
 	{
 		return getCommandClass(name) != null;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public boolean executeCommand(CommandEvent<PircBotX> event)
-	{		
-		try
-		{
-			if (!isCommand(event.getCommandName()))
-				return true;
-			Class<T> cls = getCommandClass(event.getCommandName());
-			CommandInfo<T> info = getCommandInfo(cls);
-	
-			if (info.isAdminOnly() && !event.getUser().isAdmin())
-				return true;
-			
-			Constructor<T> constuct = (Constructor<T>) cls.getConstructors()[0];
-			constuct.setAccessible(true);
-
-			constuct.newInstance(event).execute();
-		}
-		catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e)
-		{
-			e.printStackTrace();
-			return false;
-		}
-
-		return true;
 	}
 }

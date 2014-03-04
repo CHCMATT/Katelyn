@@ -7,12 +7,10 @@ import com.chcmatt.katelyn.handling.CommandEvent;
 @Command(name="quit", desc="Quits the server the command is sent from.", adminOnly=true)
 public class Quit extends GenericCommand
 {
-	private CommandEvent<PircBotX> event;
 	
 	public Quit(CommandEvent<PircBotX> event)
 	{
 		super(event);
-		this.event = event;
 	}
 	
 	public void execute()
@@ -24,8 +22,8 @@ public class Quit extends GenericCommand
 		}
 		else
 		{
-			event.respond("Quitting IRC (" + event.getArgString() + ")");
-			event.getBot().sendIRC().quitServer(event.getArgString());
+			event.respond("Quitting IRC (" + event.getArguments() + ")");
+			event.getBot().sendIRC().quitServer(event.getArguments());
 		}
 	}
 }

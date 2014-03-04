@@ -8,21 +8,19 @@ import bsh.Interpreter;
 import com.chcmatt.katelyn.utils.Utils;
 import com.chcmatt.katelyn.handling.CommandEvent;
 
-@Command(name="eval", desc="Evaluate a method within PircBotX", adminOnly=true)
+@Command(name="eval", desc="Evaluate a method within PircBotX", requiresArgs = true, adminOnly=true)
 public class Eval extends GenericCommand
 {
-	private CommandEvent<PircBotX> event;
 	
 	public Eval(CommandEvent<PircBotX> event)
 	{
 		super(event);
-		this.event = event;
 	}
 	
 	@Override
 	public void execute()
 	{
-		String eval = event.getArgString();
+		String eval = event.getArguments();
 			
 		String result = "";
 		try
@@ -30,15 +28,15 @@ public class Eval extends GenericCommand
 			Interpreter i = Utils.createDefaultInterpreter(event);
 			
 			i.eval("item = " + eval);
-			result = event.getUser().getNick() + ": "  + i.get("item").toString();
+			result = user.getNick() + ": "  + i.get("item").toString();
 		}
 		catch (EvalError e)
 		{
-			event.respondToUser("Error occurred while evaluating: \"" + eval + "\"");
+			event.respondToUser("Error occurred during evaluation");
 			e.printStackTrace();
 		}
 		
-		if (!result.toLowerCase().contains("pass") && !eval.contains("pass"))
+		if (!result.toLowerCase().contains("pass") && !eval.toLowerCase().contains("pass"))
 			event.respond(result);
 	}
 }

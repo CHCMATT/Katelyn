@@ -11,5 +11,8 @@ public @interface Command
 {
 	String name();
 	String desc() default "";
+	/** Required: {@code<arg>}, Optional: [arg]*/
+	String syntax() default "";
+	boolean requiresArgs() default false;
 	boolean adminOnly() default false;
 }

@@ -8,20 +8,18 @@ import bsh.Interpreter;
 import com.chcmatt.katelyn.utils.Utils;
 import com.chcmatt.katelyn.handling.CommandEvent;
 
-@Command(name="exec", desc="Execute a method within PircBotX", adminOnly=true)
+@Command(name="exec", desc="Execute a method within PircBotX", requiresArgs = true, adminOnly=true)
 public class Exec extends GenericCommand
 {
-	private CommandEvent<PircBotX> event;
 	
 	public Exec(CommandEvent<PircBotX> event)
 	{
 		super(event);
-		this.event = event;
 	}
 	
 	public void execute()
 	{
-		String arg = event.getArgString();
+		String arg = event.getArguments();
 		
 		try
 		{

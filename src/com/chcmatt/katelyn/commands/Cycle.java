@@ -7,34 +7,23 @@ import com.chcmatt.katelyn.handling.CommandEvent;
 @Command(name="cycle", desc="Parts and rejoins current or specified channel", adminOnly=true)
 public class Cycle extends GenericCommand
 {
-	private CommandEvent<PircBotX> event;
 	
 	public Cycle(CommandEvent<PircBotX> event)
 	{
 		super(event);
-		this.event = event;
 	}
 	
 	public void execute()
 	{
-		if (event.hasNoArgs())
+		String chan = (event.hasChannelArg()) ? event.getArgumentsList().get(0) : channel.getName();
+		
+		if (event.getBot().getUserChannelDao().channelExists(chan))
 		{
-			String chan = event.getChannel().getName();
-			event.respond("Cycling channel: " + chan);
-			event.getChannel().send().part("Cycling...");
-			event.getBot().sendIRC().joinChannel(chan);
+			event.respondToUser("Trying to cycle channel: " + chan);
+			userChannelDao.getChannel(chan).send().part("Rejoining...");
+			bot.sendIRC().joinChannel(chan);
 		}
 		else
-		{
-			String chan = event.getCommandArgs().get(0);
-			if (event.getBot().getUserChannelDao().channelExists(chan))
-			{
-				event.respond("Cycling channel: " + chan);
-				event.getBot().getUserChannelDao().getChannel(chan).send().part("Cycling...");
-				event.getBot().sendIRC().joinChannel(chan);
-			}
-			else
-				event.respondToUser("Channel not found: " + chan);
-		}
+			event.respondToUser("Not in channel: " + chan);
 	}
 }
