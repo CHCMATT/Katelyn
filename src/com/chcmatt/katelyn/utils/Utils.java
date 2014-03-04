@@ -1,4 +1,4 @@
-package com.chcmatt.katelyn;
+package com.chcmatt.katelyn.utils;
 
 import org.pircbotx.PircBotX;
 import org.pircbotx.hooks.Event;

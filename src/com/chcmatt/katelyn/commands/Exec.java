@@ -5,7 +5,7 @@ import org.pircbotx.PircBotX;
 import bsh.EvalError;
 import bsh.Interpreter;
 
-import com.chcmatt.katelyn.Utils;
+import com.chcmatt.katelyn.utils.Utils;
 import com.chcmatt.katelyn.handling.CommandEvent;
 
 @Command(name="exec", desc="Execute a method within PircBotX", adminOnly=true)

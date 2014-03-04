@@ -5,7 +5,7 @@ import bsh.EvalError;
 import bsh.Interpreter;
 
 
-import com.chcmatt.katelyn.Utils;
+import com.chcmatt.katelyn.utils.Utils;
 import com.chcmatt.katelyn.handling.CommandEvent;
 
 @Command(name="eval", desc="Evaluate a method within PircBotX", adminOnly=true)
@@ -30,7 +30,7 @@ public class Eval extends GenericCommand
 			Interpreter i = Utils.createDefaultInterpreter(event);
 			
 			i.eval("item = " + eval);
-			result = i.get("item").toString();
+			result = event.getUser().getNick() + ": "  + i.get("item").toString();
 		}
 		catch (EvalError e)
 		{
@@ -38,7 +38,7 @@ public class Eval extends GenericCommand
 			e.printStackTrace();
 		}
 		
-		// TODO cut off anything that overflows maximum line length (for Exec.java too)
-		event.respond(event.getUser() + ": " +result);
+		if (!result.toLowerCase().contains("pass") && !eval.contains("pass"))
+			event.respond(result);
 	}
 }
