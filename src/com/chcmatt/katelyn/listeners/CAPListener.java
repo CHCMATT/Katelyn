@@ -9,7 +9,7 @@ public class CAPListener extends ListenerAdapter<PircBotX>
 {
 	public void onUnknown(UnknownEvent<PircBotX> event)
 	{
-		if(event.getLine().equals("CAP LS"))
+		if(event.getLine().startsWith("CAP unknown-nick LS"))
 			event.getBot().sendCAP().request("account-notify", "extended-join");
 	}
 }
