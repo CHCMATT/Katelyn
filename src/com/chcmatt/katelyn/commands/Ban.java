@@ -16,22 +16,34 @@ public class Ban extends GenericCommand
 	}
 	
 	public void execute()
-	{
-		Channel chan = event.getChannel();
-		
+	{		
 		if (event.getArguments().startsWith("*!*") && event.getArguments().contains("@") && event.getArguments().contains("."))
 		{
 			String hostmask = Colors.removeFormattingAndColors(event.getArguments());
-			bot.sendIRC().mode(chan, "+b " + hostmask);
+			channel.send().ban(hostmask);
 		}
 		else if (event.getArguments().contains("@") && event.getArguments().contains("."))
 		{
 			String hostmask = "*!*" + Colors.removeFormattingAndColors(event.getArguments());
-			bot.sendIRC().mode(chan, "+b " + hostmask);
+			channel.send().ban(hostmask);
 		}
-		/*
-		 *  else
-			event.respondToUser(Colors.setBold("Invalid hostmask: ") + event.getArguments());
-			*/
+		else if (event.getArguments().contains("."))
+		{
+			String hostmask = "*!*@" + Colors.removeFormattingAndColors(event.getArguments());
+			channel.send().ban(hostmask);
+		}
+		else
+		{
+			if (userChannelDao.userExists(Colors.removeFormattingAndColors(event.getArguments())))
+			{
+				String user = Colors.removeFormattingAndColors(event.getArguments());
+				channel.send().ban("*!*@" + userChannelDao.getUser(user).getHostmask());
+			}
+			else
+			{
+				String hostmask = Colors.removeFormattingAndColors(event.getArguments()) + "!*@*";
+				channel.send().ban(hostmask);
+			}
+		}
 	}
 }
