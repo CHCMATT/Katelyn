@@ -1,6 +1,5 @@
 package com.chcmatt.katelyn.commands;
 
-import org.pircbotx.Channel;
 import org.pircbotx.Colors;
 import org.pircbotx.PircBotX;
 
