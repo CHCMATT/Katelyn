@@ -20,7 +20,6 @@ package org.pircbotx;
 
 import org.pircbotx.snapshot.UserSnapshot;
 
-import com.chcmatt.katelyn.handling.CommandEvent;
 import com.google.common.base.CharMatcher;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -509,8 +508,11 @@ public class InputParser implements Closeable {
 			source.setLogin(sourceLogin);
 			source.setHostmask(sourceHostname);
 			
-			String account = (parsedLine.get(1).equals("*")) ? "0" : parsedLine.get(1); // ADDED By R2D2Warrior
-			source.setAccount(account); // ADDED By R2D2Warrior
+			if (parsedLine.size() > 1)
+			{
+				String account = (parsedLine.get(1).equals("*")) ? "0" : parsedLine.get(1); // ADDED By R2D2Warrior
+				source.setAccount(account); // ADDED By R2D2Warrior
+			}
 			
 			bot.getUserChannelDao().addUserToChannel(source, channel);
 			configuration.getListenerManager().dispatchEvent(new JoinEvent<PircBotX>(bot, channel, source));
