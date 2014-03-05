@@ -19,13 +19,17 @@
 package org.pircbotx.output;
 
 import lombok.RequiredArgsConstructor;
+
+import org.pircbotx.Channel;
 import org.pircbotx.Colors;
 import org.pircbotx.PircBotX;
 import org.pircbotx.hooks.CoreHooks;
 import org.pircbotx.hooks.events.ChannelInfoEvent;
 import org.pircbotx.hooks.events.DisconnectEvent;
+
 import static com.google.common.base.Preconditions.*;
 import lombok.NonNull;
+
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -260,7 +264,12 @@ public class OutputIRC {
 		bot.sendRaw().rawLine("NICKSERV IDENTIFY " + password);
 	}
 
-	public void mode(String target, String mode) {
-		bot.sendRaw().rawLine("MODE " + target + " " + mode);
+	public void mode(Channel chan, String mode) {
+		bot.sendRaw().rawLine("MODE " + chan + " " + mode);
+	}
+
+	public void mode(String name, String mode) {
+		// TODO Auto-generated method stub
+		
 	}
 }
