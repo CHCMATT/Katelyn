@@ -15,33 +15,33 @@ public class Ban extends GenericCommand
 	}
 	
 	public void execute()
-	{		
-		if (event.getArguments().startsWith("*!*") && event.getArguments().contains("@") && event.getArguments().contains("."))
+	{
+		// Strip the argument up here for simplicity and .get(0) because you only want the first argument
+		String arg = Colors.removeFormattingAndColors(event.getArgumentsList().get(0));
+		
+		if (arg.startsWith("*!*") && arg.contains("@") && arg.contains("."))
 		{
-			String hostmask = Colors.removeFormattingAndColors(event.getArguments());
-			channel.send().ban(hostmask);
+			channel.send().ban(arg);
 		}
-		else if (event.getArguments().contains("@") && event.getArguments().contains("."))
+		else if (arg.contains("@") && arg.contains("."))
 		{
-			String hostmask = "*!*" + Colors.removeFormattingAndColors(event.getArguments());
-			channel.send().ban(hostmask);
+			channel.send().ban("*!*" + arg);
 		}
-		else if (event.getArguments().contains("."))
+		else if (arg.contains("."))
 		{
-			String hostmask = "*!*@" + Colors.removeFormattingAndColors(event.getArguments());
-			channel.send().ban(hostmask);
+			channel.send().ban("*!*@" + arg);
 		}
 		else
 		{
-			if (userChannelDao.userExists(Colors.removeFormattingAndColors(event.getArguments())))
+			if (userChannelDao.userExists(arg)) // Someone's nick was entered; use their hostmask
 			{
-				String user = Colors.removeFormattingAndColors(event.getArguments());
-				channel.send().ban("*!*@" + userChannelDao.getUser(user).getHostmask());
+				// You don't need to add *!*@, so just use "arg"
+				channel.send().ban(userChannelDao.getUser(arg).getHostmask());
 			}
-			else
+			else // Someone's nick was entered but is not sharing a channel with the bot; ban them by nick 
 			{
-				String hostmask = Colors.removeFormattingAndColors(event.getArguments()) + "!*@*";
-				channel.send().ban(hostmask);
+				// You don't need to add !*@*, so just ban "arg"
+				channel.send().ban(arg);
 			}
 		}
 	}
