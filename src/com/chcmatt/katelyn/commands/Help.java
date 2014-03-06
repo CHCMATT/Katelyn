@@ -42,7 +42,7 @@ public class Help extends GenericCommand
 		}
 		else
 		{
-			String cmd = event.getArgumentsList().get(0);
+			String cmd = event.getArgumentList().get(0);
 			if (bot.getCommandRegistry().isCommand(cmd))
 			{
 				String desc = bot.getCommandRegistry().getCommandInfo(cmd).getDesc();

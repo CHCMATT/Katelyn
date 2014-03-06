@@ -17,7 +17,7 @@ public class Ban extends GenericCommand
 	public void execute()
 	{
 		// Strip the argument up here for simplicity and .get(0) because you only want the first argument
-		String arg = Colors.removeFormattingAndColors(event.getArgumentsList().get(0));
+		String arg = Colors.removeFormattingAndColors(event.getArgumentList().get(0));
 		
 		if (arg.startsWith("*!*") && arg.contains("@") && arg.contains("."))
 		{

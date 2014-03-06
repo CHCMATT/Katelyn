@@ -1,7 +1,7 @@
 package com.chcmatt.katelyn.commands;
 
-import org.pircbotx.Colors;
 import org.pircbotx.PircBotX;
+import org.pircbotx.User;
 
 import com.chcmatt.katelyn.handling.CommandEvent;
 
@@ -16,16 +16,22 @@ public class Kick extends GenericCommand
 	
 	public void execute()
 	{
-		String nick = Colors.removeFormattingAndColors(event.getArgumentsList().get(0));
+		String nick = event.getArgumentList().get(0);
 		
-		if (event.getArgumentsList().get(1) == null)
+		if (userChannelDao.userExists(nick)) // .kick(...) takes a User parameter, not a nick, so make sure the user exists
 		{
-			channel.send().kick(nick);
+			User user = userChannelDao.getUser(nick); 
+			if (event.getArgumentList().size() == 1) // Cannot use .get(1) with only 1 argument, so check the size instead
+			{
+				channel.send().kick(user); 
+			}
+			else //if event.getArgumentList().size() > 1
+			{
+				String reason = event.getArgRange(1); // .get(1) gets the 2nd argument, .getArgRange(1) gets 2nd to the end
+				channel.send().kick(user, reason);
+			}
 		}
 		else
-		{
-			String reason = event.getArgumentsList().get(1);
-			channel.send().kick(nick, reason);
-		}
+			event.respondToUser("User doesn't exist: " + nick);
 	}
 }

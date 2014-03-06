@@ -23,7 +23,7 @@ public class IP extends GenericCommand
 	{
 		try
 		{
-			String address = event.getArgumentsList().get(0);
+			String address = event.getArgumentList().get(0);
 			Map<String, String> results = WebUtils.getLocationData(address);
 			String ip =			results.get("ip");
 			String city = 		results.get("city");
