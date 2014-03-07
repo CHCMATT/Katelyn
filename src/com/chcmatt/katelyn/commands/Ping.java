@@ -4,8 +4,8 @@ import org.pircbotx.Colors;
 import org.pircbotx.PircBotX;
 
 import com.chcmatt.katelyn.handling.CommandEvent;
-
-@Command(name="ping", desc="Sends a ping reply message back to you.")
+					//Added as example
+@Command(name="ping", alt="p", desc="Sends a ping reply message back to you.")
 public class Ping extends GenericCommand
 {
 	
