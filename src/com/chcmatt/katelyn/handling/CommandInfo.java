@@ -1,7 +1,5 @@
 package com.chcmatt.katelyn.handling;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.chcmatt.katelyn.commands.GenericCommand;
 
 import lombok.AccessLevel;
@@ -11,7 +9,7 @@ import lombok.Getter;
 public class CommandInfo<T extends GenericCommand>
 {
 	private String name;
-	private String alt;
+	private String[] aliases;
 	private String desc;
 	private String syntax;
 	private boolean isAdminOnly;
@@ -20,10 +18,10 @@ public class CommandInfo<T extends GenericCommand>
 	private Class<T> commandClass;
 	
 	@SuppressWarnings("unchecked")
-	public CommandInfo(String name, String alt, String desc, String syntax, boolean adminOnly, boolean requiresArgs, Class<?> commandClass)
+	public CommandInfo(String name, String[] aliases, String desc, String syntax, boolean adminOnly, boolean requiresArgs, Class<?> commandClass)
 	{
 		this.name = name;
-		this.alt = alt;
+		this.aliases = aliases;
 		this.desc = desc;
 		this.syntax = syntax;
 		this.isAdminOnly = adminOnly;
@@ -34,10 +32,5 @@ public class CommandInfo<T extends GenericCommand>
 	public boolean requiresArgs()
 	{
 		return requiresArgs;
-	}
-	
-	public boolean hasAlt()
-	{
-		return StringUtils.isNotBlank(alt);
 	}
 }

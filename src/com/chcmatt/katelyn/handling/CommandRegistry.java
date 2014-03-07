@@ -7,6 +7,7 @@ import java.util.Set;
 
 import lombok.Getter;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.pircbotx.PircBotX;
 import org.reflections.Reflections;
 
@@ -29,7 +30,7 @@ public class CommandRegistry<T extends GenericCommand>
 		for (Class<?> cls : reflections.getTypesAnnotatedWith(Command.class))
 		{
 			cmd = cls.getAnnotation(Command.class);
-			commands.add(new CommandInfo<T>(cmd.name(), cmd.alt(), cmd.desc(),
+			commands.add(new CommandInfo<T>(cmd.name(), cmd.alias(), cmd.desc(),
 					cmd.syntax(), cmd.adminOnly(), cmd.requiresArgs(), cls));
 		}
 	}
@@ -72,7 +73,7 @@ public class CommandRegistry<T extends GenericCommand>
 	public Class<T> getCommandClass(String name)
 	{
 		for (CommandInfo<T> info : commands)
-			if (info.getName().equals(name) || (info.hasAlt() && info.getAlt().equals(name)))
+			if (info.getName().equals(name) || ArrayUtils.contains(info.getAliases(), name))
 				return info.getCommandClass();
 		
 		return null;
