@@ -1,15 +1,15 @@
 package com.chcmatt.katelyn.commands;
 
-import org.pircbotx.Colors;
 import org.pircbotx.PircBotX;
+import org.pircbotx.Colors;
 
 import com.chcmatt.katelyn.handling.CommandEvent;
 
-@Command(name="say", desc="Sends message to channel", syntax="say <message>", adminOnly=true)
-public class Say extends GenericCommand
+@Command(name="calc", desc="Calculates a given arguement.", syntax="calc <term>", requiresArgs=true, alias={".","-","c"})
+public class Calc extends GenericCommand
 {
 	
-	public Say(CommandEvent<PircBotX> event)
+	public Calc(CommandEvent<PircBotX> event)
 	{
 		super(event);
 	}
@@ -18,5 +18,6 @@ public class Say extends GenericCommand
 	public void execute()
 	{
 		event.respond(Colors.setBold(user.getNick()) + ": " + event.getArguments());
+		//Math.addExact(x, y)
 	}
 }

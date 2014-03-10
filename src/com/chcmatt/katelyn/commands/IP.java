@@ -41,7 +41,7 @@ public class IP extends GenericCommand
 			//Else, build and send message.
 			else
 			{
-				event.respond(user.getNick() + ": " +
+				event.respond(Colors.setBold(user.getNick()) + ": " +
 							Colors.setColor("IP: ", Colors.DARK_BLUE + Colors.BOLD) + ip + " | " +
 							Colors.setColor("City: ", Colors.DARK_BLUE + Colors.BOLD) + city + " | " +
 							Colors.setColor("Region: ", Colors.DARK_BLUE + Colors.BOLD) + region + " | " +

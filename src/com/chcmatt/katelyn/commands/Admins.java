@@ -1,5 +1,6 @@
 package com.chcmatt.katelyn.commands;
 
+import org.pircbotx.Colors;
 import org.pircbotx.PircBotX;
 
 import com.chcmatt.katelyn.handling.CommandEvent;
@@ -15,6 +16,6 @@ public class Admins extends GenericCommand
 	
 	public void execute()
 	{
-		event.respond(config.getAdminAccounts().toString());
+		event.respond(Colors.setBold(user.getNick()) + ": " + config.getAdminAccounts().toString());
 	}
 }
