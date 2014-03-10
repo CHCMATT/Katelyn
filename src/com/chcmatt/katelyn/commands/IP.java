@@ -10,7 +10,7 @@ import org.pircbotx.Colors;
 import com.chcmatt.katelyn.handling.CommandEvent;
 import com.chcmatt.katelyn.utils.WebUtils;
 
-@Command(name="ip", desc="Gets information about the specified IP address.", requiresArgs = true, adminOnly=false)
+@Command(name="ip", desc="Gets information about the specified IP address.", requiresArgs = true, alias={"ipinfo","iplookup","whois"}, adminOnly=false)
 public class IP extends GenericCommand
 {
 	
