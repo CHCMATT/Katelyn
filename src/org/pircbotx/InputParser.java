@@ -513,6 +513,8 @@ public class InputParser implements Closeable {
 				String account = (parsedLine.get(1).equals("*")) ? "0" : parsedLine.get(1); // ADDED By R2D2Warrior
 				source.setAccount(account); // ADDED By R2D2Warrior
 			}
+			else
+				bot.sendRaw().rawLine("WHO " + sourceNick + " %nat,ACC"); // ADDED By R2D2Warrior
 			
 			bot.getUserChannelDao().addUserToChannel(source, channel);
 			configuration.getListenerManager().dispatchEvent(new JoinEvent<PircBotX>(bot, channel, source));
