@@ -1,5 +1,6 @@
 package com.chcmatt.katelyn.commands;
 
+import org.pircbotx.Colors;
 import org.pircbotx.PircBotX;
 
 import com.chcmatt.katelyn.handling.CommandEvent;
@@ -19,10 +20,9 @@ public class Cycle extends GenericCommand
 		
 		if (event.getBot().getUserChannelDao().channelExists(chan))
 		{
-			event.respondToUser("Trying to cycle channel: " + chan);
-			userChannelDao.getChannel(chan).send().cycle(); // I never knew this existed
+			userChannelDao.getChannel(chan).send().cycle();
 		}
 		else
-			event.respondToUser("Not in channel: " + chan);
+			event.respondToUser("Not in channel " + Colors.setBold(chan) + ".");
 	}
 }

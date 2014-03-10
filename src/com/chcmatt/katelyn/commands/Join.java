@@ -1,5 +1,6 @@
 package com.chcmatt.katelyn.commands;
 
+import org.pircbotx.Colors;
 import org.pircbotx.PircBotX;
 
 import com.chcmatt.katelyn.handling.CommandEvent;
@@ -19,12 +20,12 @@ public class Join extends GenericCommand
 		
 		if (!userChannelDao.channelExists(chan) && event.hasChannelArg())
 		{
-			event.respondToUser("Trying to join channel: " + chan + " ...");
+			event.respondToUser("Trying to join channel " + Colors.setBold(chan) + ".");
 			bot.sendIRC().joinChannel(chan);
 		}
 		else if (userChannelDao.channelExists(chan))
-			event.respondToUser("Already in channel: " + chan);
+			event.respondToUser("Already in channel " + Colors.setBold(chan) + ".");
 		else
-			event.respondToUser("Invalid channel name: " + chan);
+			event.respondToUser("Invalid channel name " + Colors.setBold(chan) + ".");
 	}
 }

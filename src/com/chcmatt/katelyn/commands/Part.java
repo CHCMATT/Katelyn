@@ -1,5 +1,6 @@
 package com.chcmatt.katelyn.commands;
 
+import org.pircbotx.Colors;
 import org.pircbotx.PircBotX;
 
 import com.chcmatt.katelyn.handling.CommandEvent;
@@ -35,10 +36,10 @@ public class Part extends GenericCommand
 		
 		if (userChannelDao.channelExists(chan))
 		{
-			event.respondToUser("Trying to part channel: " + chan);
+			event.respondToUser("Trying to part channel " + Colors.setBold(chan) + ".");
 			userChannelDao.getChannel(chan).send().part(msg);
 		}
 		else
-			event.respondToUser("Not in channel: " + chan);
+			event.respondToUser("Not in channel " + Colors.setBold(chan) + ".");
 	}
 }
