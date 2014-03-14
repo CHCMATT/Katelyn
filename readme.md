@@ -1,7 +1,7 @@
 Katelyn
 =======
 
-Katelyn is an open-source IRC Bot written in Java with PircBotX (https://code.google.com/p/pircbotx/) and written by __CHCMATT__, with the help of __R2D2Warrior__.
+Katelyn is an open-source IRC Bot written in Java with PircBotX (https://code.google.com/p/pircbotx/) and written by __CHCMATT__, with the help of __R2D2Warrior__ (https://github.com/R2D2Warrior).
 
 The website for Katelyn is located here: http://chcmatt.com/Katelyn.php
 
