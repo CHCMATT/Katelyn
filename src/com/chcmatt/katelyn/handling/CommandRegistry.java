@@ -13,6 +13,7 @@ import org.reflections.Reflections;
 
 import com.chcmatt.katelyn.commands.Command;
 import com.chcmatt.katelyn.commands.GenericCommand;
+import com.chcmatt.katelyn.utils.Utils;
 
 public class CommandRegistry<T extends GenericCommand>
 {
@@ -25,7 +26,7 @@ public class CommandRegistry<T extends GenericCommand>
 		this.bot = bot;
 		this.commands = new HashSet<CommandInfo<T>>();
 		
-		Reflections reflections = new Reflections("com.chcmatt.katelyn.commands");
+		Reflections reflections = new Reflections(Utils.getPackageName(Command.class));
 		Command cmd;
 		for (Class<?> cls : reflections.getTypesAnnotatedWith(Command.class))
 		{

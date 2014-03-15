@@ -8,6 +8,7 @@ import org.reflections.Reflections;
 
 import com.chcmatt.katelyn.listeners.AddListener;
 import com.chcmatt.katelyn.utils.Config;
+import com.chcmatt.katelyn.utils.Utils;
 
 public class Katelyn
 {
@@ -52,12 +53,15 @@ public class Katelyn
 		// All this just adds any class with @AddListener to the listeners
 		try
  		{
-			Reflections reflections = new Reflections("com.chcmatt.katelyn.listeners");
+			Reflections reflections = new Reflections(Utils.getPackageName(AddListener.class));
 			for (Class<?> cls : reflections.getTypesAnnotatedWith(AddListener.class))
 			{
-				@SuppressWarnings("unchecked")
-				Listener<PircBotX> listener = (Listener<PircBotX>) cls.newInstance();
-				builder.addListener(listener);
+				if (cls.getAnnotation(AddListener.class).value())
+				{
+					@SuppressWarnings("unchecked")
+					Listener<PircBotX> listener = (Listener<PircBotX>) cls.newInstance();
+					builder.addListener(listener);
+				}
 			}
  		}
  		catch (IllegalAccessException | InstantiationException e)
