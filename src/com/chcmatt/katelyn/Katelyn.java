@@ -40,7 +40,7 @@ public class Katelyn
 		.addCapHandler(new EnableCapHandler("account-notify", true))
 		
 		//Command management
-		.addAdminAccounts("ChasedSpade", "CHCMATT", "R2D2Warrior", "happyslayer")
+		.addAdminAccounts("ChasedSpade", "CHCMATT", "happyslayer", "R2D2Warrior")
 
 		.addPrefix("-", "MESSAGE")
 		.addPrefix("|", "NOTICE")
