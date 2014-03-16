@@ -31,8 +31,8 @@ public class CommandRegistry<T extends GenericCommand>
 		for (Class<?> cls : reflections.getTypesAnnotatedWith(Command.class))
 		{
 			cmd = cls.getAnnotation(Command.class);
-			commands.add(new CommandInfo<T>(cmd.name(), cmd.alias(), cmd.desc(),
-					cmd.syntax(), cmd.adminOnly(), cmd.requiresArgs(), cls));
+			commands.add(new CommandInfo<T>(cmd.name(), cmd.alias(), cmd.desc(), cmd.syntax(),
+					cmd.adminOnly(), cmd.opOnly(), cmd.voiceOnly(), cmd.requiresArgs(), cls));
 		}
 	}
 	
@@ -49,9 +49,21 @@ public class CommandRegistry<T extends GenericCommand>
 		Class<T> cls = getCommandClass(event.getCommandName());
 		CommandInfo<T> info = getCommandInfo(cls);
 		
+		// If the command is admin only and the user isn't admin, return an error
 		if (info.isAdminOnly() && !event.getUser().isAdmin())
 			return noPermissionError;
 		
+		if (event.getChannel() != null) // If the channel is null, its a private message command
+		{
+			// If the command is op only and the user isn't op, return an error
+			if (info.isOpOnly() && !event.getChannel().getOps().contains(event.getUser()))
+				return noPermissionError;
+			if (info.isVoiceOnly() &&			// If the command is voice only and the user isn't voice or op, return an error
+					!event.getChannel().getVoices().contains(event.getUser()) && !event.getChannel().getOps().contains(event.getUser()))
+				return noPermissionError;
+		}
+		
+		// If the command needs arguments and has none, return an error with the correct syntax
 		if (info.requiresArgs() && event.hasNoArgs())
 			return needsArgsError + info.getSyntax();
 		
