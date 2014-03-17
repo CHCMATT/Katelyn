@@ -264,12 +264,7 @@ public class OutputIRC {
 		bot.sendRaw().rawLine("NICKSERV IDENTIFY " + password);
 	}
 
-	public void mode(Channel chan, String mode) {
-		bot.sendRaw().rawLine("MODE " + chan + " " + mode);
-	}
-
-	public void mode(String name, String mode) {
-		// TODO Auto-generated method stub
-		
+	public void mode(String target, String mode) {
+		bot.sendRaw().rawLine("MODE " + target + " " + mode);
 	}
 }
