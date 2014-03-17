@@ -5,7 +5,7 @@ import org.pircbotx.PircBotX;
 
 import com.chcmatt.katelyn.handling.CommandEvent;
 
-@Command(name="ban", desc="Bans a hostmask of a user.", syntax = "ban <hostmask or username>", requiresArgs = true, adminOnly=true)
+@Command(name="ban", desc="Bans a hostmask of a user.", syntax = "ban <hostmask or username>", requiresArgs = true, opOnly=true)
 public class Ban extends GenericCommand
 {
 	

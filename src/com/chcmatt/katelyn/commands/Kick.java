@@ -5,7 +5,7 @@ import org.pircbotx.User;
 
 import com.chcmatt.katelyn.handling.CommandEvent;
 
-@Command(name="kick", desc="Kicks a user out of the channel.", syntax = "kick <username> [reason]", requiresArgs = true, adminOnly=true)
+@Command(name="kick", desc="Kicks a user out of the channel.", syntax = "kick <username> [reason]", requiresArgs = true, opOnly=true)
 public class Kick extends GenericCommand
 {
 	
