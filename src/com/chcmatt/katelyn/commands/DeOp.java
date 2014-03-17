@@ -1,17 +1,16 @@
 package com.chcmatt.katelyn.commands;
 
-import org.pircbotx.Channel;
 import org.pircbotx.Colors;
 import org.pircbotx.PircBotX;
 import org.pircbotx.User;
 
 import com.chcmatt.katelyn.handling.CommandEvent;
 
-@Command(name="deop", desc="Removes channel operator from a user.", syntax = "deop [username]", opOnly=true)
-public class Deop extends GenericCommand
+@Command(name="deop", desc="Removes channel operator from a user.", syntax = "deop [username]", alias="do", opOnly=true)
+public class DeOp extends GenericCommand
 {
 	
-	public Deop(CommandEvent<PircBotX> event)
+	public DeOp(CommandEvent<PircBotX> event)
 	{
 		super(event);
 	}

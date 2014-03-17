@@ -6,7 +6,7 @@ import org.pircbotx.User;
 
 import com.chcmatt.katelyn.handling.CommandEvent;
 
-@Command(name="op", desc="Gives channel operator to a user.", syntax = "op [username]", opOnly=true)
+@Command(name="op", desc="Gives channel operator to a user.", syntax = "op [username]", alias="o", opOnly=true)
 public class Op extends GenericCommand
 {
 	
