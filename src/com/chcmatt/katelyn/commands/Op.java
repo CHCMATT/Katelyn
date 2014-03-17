@@ -30,7 +30,7 @@ public class Op extends GenericCommand
 				channel.send().op(user);
 			}
 			else
-				event.respond(Colors.setBold(user.getNick()) + ": There is no one in here by name" + Colors.setBold(event.getArgumentList().get(0)) + ".");
+				event.respond(Colors.setBold(user.getNick()) + ": There is no one in here with the name " + Colors.setBold(event.getArgumentList().get(0)) + ".");
 			}
 	}
 }
