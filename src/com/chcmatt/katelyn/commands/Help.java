@@ -1,6 +1,7 @@
 package com.chcmatt.katelyn.commands;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -26,19 +27,21 @@ public class Help extends GenericCommand
 		
 		if (event.hasNoArgs())
 		{
-			event.respond(Colors.setBold("Valid prefixes: ") + "Public message: \"" + prePublic + "\" Private notice: \"" + prePrivate +"\"");
+			event.respond(Colors.setBold("Valid prefixes: ") + "\"" + prePublic + "\" to public message, \"" + prePrivate +"\" to private notice.");
 			List<String> commandList = new ArrayList<String>();
-			List<String> adminCommands = new ArrayList<String>();
+			List<String> adminCommandList = new ArrayList<String>();
 			for (CommandInfo<GenericCommand> info : bot.getCommandRegistry().getCommands())
 			{
 				if (!info.isAdminOnly())
 					commandList.add(info.getName());
 				else if (user.isAdmin())
-					adminCommands.add(info.getName());
+					adminCommandList.add(info.getName());
 			}
+			Collections.sort(commandList);
+			Collections.sort(adminCommandList);
 			event.respond(Colors.setBold("Commands: ") + StringUtils.join(commandList, ", "));
 			if (user.isAdmin())
-				event.respondToUser(Colors.setBold("Admin Commands: ") + StringUtils.join(adminCommands, ", "));
+				event.respondToUser(Colors.setBold("Admin Commands: ") + StringUtils.join(adminCommandList, ", "));
 		}
 		else
 		{
