@@ -1,23 +1,32 @@
 package com.chcmatt.katelyn.commands;
 
+import java.io.IOException;
+
+import org.json.simple.parser.ParseException;
 import org.pircbotx.PircBotX;
-import org.pircbotx.Colors;
 
 import com.chcmatt.katelyn.handling.CommandEvent;
+import com.chcmatt.katelyn.utils.WebUtils;
 
-@Command(name="calc", desc="Calculates a given arguement.", syntax="calc <term>", requiresArgs=true, alias={".","-","c"})
+@Command(name="calc", desc="Calculates a given math expression", syntax = "calc <expression>", requiresArgs=true, alias={"c","ca"})
 public class Calc extends GenericCommand
 {
-	
 	public Calc(CommandEvent<PircBotX> event)
 	{
 		super(event);
 	}
-	
-	@Override
+
 	public void execute()
 	{
-		event.respond(Colors.setBold(user.getNick()) + ": " + event.getArguments());
-		//Math.addExact(x, y)
+		try
+		{
+			String response = WebUtils.getCalculation(event.getArguments());
+			event.respond(response);
+		}
+		catch (IOException | ParseException | IllegalArgumentException e)
+		{
+			event.respondToUser("An error occurred while calculating: " + event.getArguments());
+			e.printStackTrace();
+		}
 	}
 }
