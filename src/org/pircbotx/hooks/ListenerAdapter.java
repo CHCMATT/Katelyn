@@ -23,6 +23,7 @@ import org.pircbotx.hooks.events.*;
 import org.pircbotx.hooks.types.*;
 
 import com.chcmatt.katelyn.handling.CommandEvent;
+import com.chcmatt.katelyn.handling.FactoidEvent;
 
 /**
  * Adapter that provides methods to capture each event separately, removing
@@ -49,6 +50,8 @@ public abstract class ListenerAdapter<T extends PircBotX> implements Listener<T>
 			onConnect((ConnectEvent<T>) event);
 		else if (event instanceof DisconnectEvent)
 			onDisconnect((DisconnectEvent<T>) event);
+		else if (event instanceof FactoidEvent)
+			onFactoid((FactoidEvent<T>) event);
 		else if (event instanceof FingerEvent)
 			onFinger((FingerEvent<T>) event);
 		else if (event instanceof HalfOpEvent)
@@ -180,6 +183,9 @@ public abstract class ListenerAdapter<T extends PircBotX> implements Listener<T>
 	}
 
 	public void onDisconnect(DisconnectEvent<T> event) throws Exception {
+	}
+	
+	public void onFactoid(FactoidEvent<T> event) throws Exception {
 	}
 
 	public void onFinger(FingerEvent<T> event) throws Exception {

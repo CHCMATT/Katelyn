@@ -16,8 +16,8 @@ public class Katelyn
 	public static void main(String[] args) throws Exception
 	{
 		Config c = new Config("config.json");
-		String nsPass = c.getPassword("nickserv");
-		String bncPass = c.getPassword("bouncer");
+		String nsPass = c.getMap().get("passwords").get("nickserv");
+		String bncPass = c.getMap().get("passwords").get("bouncer");
 		
 		Configuration.Builder<PircBotX> builder = new Configuration.Builder<PircBotX>()
 
@@ -45,6 +45,7 @@ public class Katelyn
 
 		.addPrefix("-", "MESSAGE")
 		.addPrefix("|", "NOTICE")
+		.setFactoidPrefix("?")
 		
 		.addAutoJoinChannels("#botspam", "#ChasedSpade",
 							"#CHCMATT", "#Katelyn", "#SC-Staff",

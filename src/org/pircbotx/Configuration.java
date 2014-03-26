@@ -123,6 +123,7 @@ public class Configuration<B extends PircBotX> {
 	protected final List<String> adminAccounts;
 	protected final BiMap<String, String> prefixes;
 	protected final List<String> blockedChannels;
+	protected final String factoidPrefix;
 
 	/**
 	 * Use {@link Configuration.Builder#build() }.
@@ -199,6 +200,7 @@ public class Configuration<B extends PircBotX> {
 		this.adminAccounts  = builder.getAdminAccounts();
 		this.prefixes = HashBiMap.create(builder.getPrefixes());
 		this.blockedChannels = builder.getBlockedChannels();
+		this.factoidPrefix = builder.getFactoidPrefix();
 	}
 
 	@Accessors(chain = true)
@@ -388,6 +390,10 @@ public class Configuration<B extends PircBotX> {
 		 * List of channels not to join or send messages to
 		 */
 		protected List<String> blockedChannels = new ArrayList<>();
+		/**
+		 * The prefix used to call factoids
+		 */
+		protected String factoidPrefix;
 		// --
 		
 		/**
@@ -452,6 +458,7 @@ public class Configuration<B extends PircBotX> {
 			this.adminAccounts = configuration.getAdminAccounts();
 			this.prefixes = configuration.getPrefixes();
 			this.blockedChannels = configuration.getBlockedChannels();
+			this.factoidPrefix = configuration.getFactoidPrefix();
 		}
 		/**
 		 * Copy values from another builder. 
@@ -502,6 +509,7 @@ public class Configuration<B extends PircBotX> {
 			this.adminAccounts = otherBuilder.getAdminAccounts();
 			this.prefixes = otherBuilder.getPrefixes();
 			this.blockedChannels = otherBuilder.getBlockedChannels();
+			this.factoidPrefix = otherBuilder.getFactoidPrefix();
 		}
 
 		/**

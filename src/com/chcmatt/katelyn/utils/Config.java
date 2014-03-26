@@ -22,11 +22,6 @@ public class Config
 		this.fileName = fileName;
 		this.map = getFileMap();
 	}
-	
-	public String getPassword(String type)
-	{
-		return map.get("passwords").get(type.toLowerCase());
-	}
 
 	public void update()
 	{
