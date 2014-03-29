@@ -17,7 +17,7 @@ public class FactoidManager
 	
 	public static void addFactoid(String name, String data)
 	{
-		config.getMap().get("factoids").put(name, data);
+		config.getMap().get("factoids").put(name, name + ": " + data);
 		config.update();
 	}
 	

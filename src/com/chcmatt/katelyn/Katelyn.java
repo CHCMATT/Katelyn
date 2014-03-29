@@ -45,7 +45,7 @@ public class Katelyn
 
 		.addPrefix("-", "MESSAGE")
 		.addPrefix("|", "NOTICE")
-		.setFactoidPrefix("?")
+		.setFactoidPrefix("-")
 		
 		.addAutoJoinChannels("#botspam", "#ChasedSpade",
 							"#CHCMATT", "#Katelyn", "#SC-Staff",
