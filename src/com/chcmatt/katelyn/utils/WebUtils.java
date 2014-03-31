@@ -40,7 +40,6 @@ public class WebUtils
 		return json;
 	}
 
-
 	/**
 	 * Tries to calculate a mathematical expression using <a href="http://www.duckduckgo.com/">www.duckduckgo.com</a>
 	 * @param input The math expression, with or without spaces
@@ -70,12 +69,12 @@ public class WebUtils
 
 		return strippedResult;
 	}
+	
 	public static Map<String, String> getLocationData(String ip) throws IOException, ParseException
 	{
 		String address = Colors.removeFormattingAndColors("http://geo.liamstanley.io/json/" + ip);
 		HttpURLConnection conn = (HttpURLConnection) new URL(address).openConnection();
-		JSONObject data =
-				(JSONObject)new JSONParser().parse(new InputStreamReader(conn.getInputStream()));
+		JSONObject data = (JSONObject)new JSONParser().parse(new InputStreamReader(conn.getInputStream()));
 
 		Map<String, String> results = new HashMap<>();
 		for (Object o : data.keySet())
@@ -88,5 +87,13 @@ public class WebUtils
 				results.put(key, Utils.toTitleCase(val));
 		}
 		return results;
+	}
+	public static String getGithubTags() throws IOException, ParseException, IllegalArgumentException
+	{
+		String address = "https://api.github.com/repos/CHCMATT/Katelyn/tags";
+		HttpURLConnection conn = (HttpURLConnection) new URL(address).openConnection();
+		String data = (String)new JSONParser().parse(new InputStreamReader(conn.getInputStream()));
+		
+		return data;
 	}
 }
