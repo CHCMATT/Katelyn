@@ -6,9 +6,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -88,11 +90,11 @@ public class WebUtils
 		}
 		return results;
 	}
-	public static String getGithubTags() throws IOException, ParseException, IllegalArgumentException
+	public static List<Map<String, ?>> getGithubTags() throws IOException, ParseException, IllegalArgumentException
 	{
 		String address = "https://api.github.com/repos/CHCMATT/Katelyn/tags";
 		HttpURLConnection conn = (HttpURLConnection) new URL(address).openConnection();
-		String data = (String)new JSONParser().parse(new InputStreamReader(conn.getInputStream()));
+		List<Map<String, ?>> data =(List<Map<String, ?>>)new  JSONParser().parse(new InputStreamReader(conn.getInputStream()));
 		
 		return data;
 	}
