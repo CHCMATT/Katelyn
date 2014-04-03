@@ -24,7 +24,7 @@ public class Katelyn
 		//Login info
 		.setName("Katelyn")
 		.setLogin("Katelyn")
-		.setRealName("Katelyn - CHCMATT's Personal Bot (PircBotX 2.0)")
+		.setRealName("Katelyn - CHCMATT's Personal Java Bot (PircBotX 2.0)")
 		.setNickservPassword(nsPass)
 
 		//Server info

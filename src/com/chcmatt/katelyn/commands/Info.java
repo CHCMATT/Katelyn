@@ -23,7 +23,7 @@ public class Info extends GenericCommand
 		try
 		{
 			String latestTag = WebUtils.getGithubTags().get(0).get("name").toString();
-			String response = Colors.setBold(event.getUser().getNick()) + ": Hi, I'm " + bot.getNick() + " and I'm a bot! I'm running " + Colors.setBold("PircBotX 2.0") + " on GitHub Release version " + Colors.setBold(latestTag) + ". " + Colors.setBold(bot.getConfiguration().getOwnerAccount()) + " is my owner!";
+			String response = Colors.setBold(event.getUser().getNick()) + ": Hi, I'm " + bot.getNick() + " and I'm a bot! I'm running " + Colors.setBold("PircBotX 2.0") + " on GitHub Release " + Colors.setBold(latestTag) + ". " + Colors.setBold(bot.getConfiguration().getOwnerAccount()) + " is my owner!";
 			event.respond(response);
 		}
 		catch (IOException | ParseException | IllegalArgumentException e)
