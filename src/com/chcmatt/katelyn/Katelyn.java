@@ -24,13 +24,13 @@ public class Katelyn
 		//Login info
 		.setName("Katelyn")
 		.setLogin("Katelyn")
-		.setRealName("Katelyn - CHCMATT's Personal Java Bot (PircBotX 2.0)")
+		.setRealName("Katelyn - CHCMATT's Personal Java Bot (PircBotX)")
 		.setNickservPassword(nsPass)
 
 		//Server info
-		//.setServerHostname("irc.esper.net")
-		.setServerHostname("bnc.liamstanley.io")
-		.setServerPassword(bncPass)
+		.setServerHostname("irc.esper.net")
+		//.setServerHostname("bnc.liamstanley.io")
+		//.setServerPassword(bncPass)
 		.setChannelPrefixes("#")
 		
 		//Booleans
@@ -50,7 +50,7 @@ public class Katelyn
 		
 		.addAutoJoinChannels("#botspam", "#ChasedSpade",
 							"#CHCMATT", "#Katelyn", "#SC-Staff",
-							"Survival-Craft");
+							"#Survival-Craft");
 		
 		// All this just adds any class with @AddListener to the listeners
 		try
