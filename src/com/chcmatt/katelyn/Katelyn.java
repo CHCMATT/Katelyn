@@ -16,7 +16,7 @@ public class Katelyn
 	public static void main(String[] args) throws Exception
 	{
 		Config c = new Config("config.json");
-		String nsPass = c.getMap().get("passwords").get("nickserv");
+		String nsPass  = c.getMap().get("passwords").get("nickserv");
 		String bncPass = c.getMap().get("passwords").get("bouncer");
 		
 		Configuration.Builder<PircBotX> builder = new Configuration.Builder<PircBotX>()
