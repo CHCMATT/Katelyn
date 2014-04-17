@@ -13,6 +13,6 @@ public class ConnectMessage extends ListenerAdapter<PircBotX>
 	{
 		//Waits 30 seconds before sending the message. (Enough time to /WHO all/most channels.)
 		Utils.wait(30000);
-		event.getBot().sendIRC().action("#Katelyn", "is now connected to the server.");
+		event.getBot().sendIRC().action("#Katelyn", "is now accepting commands.");
 	}
 }
