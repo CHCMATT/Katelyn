@@ -44,7 +44,7 @@ public class Katelyn
 		.addAdminAccounts("ChasedSpade", "CHCMATT", "happyslayer", "R2D2Warrior")
 		.setOwnerAccount("CHCMATT")
 
-		.addPrefix("-", "MESSAGE")
+		.addPrefix(".", "MESSAGE")
 		.addPrefix("|", "NOTICE")
 		.setFactoidPrefix("-")
 		
