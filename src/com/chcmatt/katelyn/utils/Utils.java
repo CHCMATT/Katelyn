@@ -38,6 +38,8 @@ public class Utils
 			i.set("cmdReg", bot.getCommandRegistry());
 			
 			i.eval("import org.pircbotx.*");
+			i.eval("import com.chcmatt.katelyn.utils.WebUtils");
+			i.eval("import org.apache.commons.lang3.StringUtils");
 		}
 		catch (EvalError e)
 		{
