@@ -93,6 +93,7 @@ public class WebUtils
 	{
 		String address = "https://api.github.com/repos/CHCMATT/Katelyn/tags";
 		HttpURLConnection conn = (HttpURLConnection) new URL(address).openConnection();
+		@SuppressWarnings("unchecked")
 		List<Map<String, ?>> data =(List<Map<String, ?>>)new  JSONParser().parse(new InputStreamReader(conn.getInputStream()));
 		
 		return data;
