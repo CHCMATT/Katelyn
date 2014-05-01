@@ -28,9 +28,9 @@ public class Katelyn
 		.setNickservPassword(nsPass)
 
 		//Server info
-		.setServerHostname("irc.esper.net")
-		//.setServerHostname("bnc.liamstanley.io")
-		//.setServerPassword(bncPass)
+		//.setServerHostname("irc.esper.net")
+		.setServerHostname("irc.bouncer.ml")
+		.setServerPassword(bncPass)
 		.setChannelPrefixes("#")
 		
 		//Booleans

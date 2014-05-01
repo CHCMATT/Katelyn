@@ -19,6 +19,7 @@
 package org.pircbotx.hooks;
 
 import com.google.common.collect.ComparisonChain;
+
 import org.pircbotx.PircBotX;
 import org.pircbotx.hooks.managers.ListenerManager;
 import org.pircbotx.hooks.types.GenericEvent;
