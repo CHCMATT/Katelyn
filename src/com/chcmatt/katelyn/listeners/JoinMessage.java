@@ -25,7 +25,7 @@ public class JoinMessage extends ListenerAdapter<PircBotX>
 				String region =		results.get("region_name");
 				String country =	results.get("country_name");
 
-				if (results.get("country_name").equals("N/A"))
+				if (results.get("region_name").equals("N/A"))
 					event.getChannel().send().message(Colors.setColor("User is connecting from "+Colors.setBold(country)+".",Colors.DARK_GREEN));
 				else
 					event.getChannel().send().message(Colors.setColor("User is connecting from "+Colors.setBold(region+", "+country)+".",Colors.DARK_GREEN));
