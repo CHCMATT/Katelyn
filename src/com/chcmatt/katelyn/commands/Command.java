@@ -25,4 +25,17 @@ public @interface Command
 	boolean opOnly() default false;
 	/** If the command requires voice status in a channel. Ignored in private message commands. Default <code>false</code>*/
 	boolean voiceOnly() default false;
+	
+	@Target(ElementType.METHOD)
+	@Retention(RetentionPolicy.RUNTIME)
+	public @interface Sub
+	{
+		String name();
+		boolean requiresArgs() default false;
+		boolean adminOnly() default false;
+	}
+	
+	@Target(ElementType.METHOD)
+	@Retention(RetentionPolicy.RUNTIME)
+	public @interface Default {}
 }

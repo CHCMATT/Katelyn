@@ -18,7 +18,6 @@ public class Time extends GenericCommand
 		super(event);
 	}
 
-	@Override
 	public void execute()
 	{
 		if (event.hasNoArgs())

@@ -14,7 +14,6 @@ public class Say extends GenericCommand
 		super(event);
 	}
 	
-	@Override
 	public void execute()
 	{
 		event.respond(Colors.setBold(user.getNick()) + ": " + event.getArguments());
