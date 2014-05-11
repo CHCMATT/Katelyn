@@ -46,11 +46,12 @@ public class Katelyn
 
 		.addPrefix(".", "MESSAGE")
 		.addPrefix("|", "NOTICE")
-		.setFactoidPrefix("-")
 		
 		.addAutoJoinChannels("#botspam", "#ChasedSpade",
 							"#CHCMATT", "#Katelyn", "#SC-Staff",
 							"#Survival-Craft");
+		
+		//.setAdminChannels("#Katelyn");
 		
 		// All this just adds any class with @AddListener to the listeners
 		try
