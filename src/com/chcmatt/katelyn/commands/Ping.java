@@ -14,9 +14,27 @@ public class Ping extends GenericCommand
 		super(event);
 	}
 	
-	@Override
-	public void execute()
+	@Command.Default
+	public void ping()
 	{
 		event.respond(user.getNick() + ": " + Colors.setBold("PONG!"));
+	}
+	
+	@Command.Sub(name="sub")
+	public void subPing()
+	{
+		event.respond(user.getNick() + ": " + Colors.setColor("Sub-PONG!", Colors.RED + Colors.BOLD));
+	}
+	
+	@Command.Sub(name="sub2", adminOnly=true)
+	public void subPing2()
+	{
+		event.respond(user.getNick() + ": " + Colors.setColor("Sub2-PONG!", Colors.RED + Colors.BOLD));
+	}
+	
+	@Command.Sub(name="sub3", requiresArgs=true)
+	public void subPing3()
+	{
+		event.respond(event.getArguments() + ": " + Colors.setColor("Sub-PONG!", Colors.RED + Colors.BOLD));
 	}
 }

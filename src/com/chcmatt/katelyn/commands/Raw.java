@@ -14,7 +14,6 @@ public class Raw extends GenericCommand
 		super(event);
 	}
 
-	@Override
 	public void execute()
 	{
 		if (event.getArguments().startsWith("me")||event.getArguments().startsWith("action"))

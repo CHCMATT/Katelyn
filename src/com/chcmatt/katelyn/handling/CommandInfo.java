@@ -1,8 +1,13 @@
 package com.chcmatt.katelyn.handling;
 
+import java.lang.reflect.Method;
+import java.util.HashMap;
+
+import com.chcmatt.katelyn.commands.Command;
 import com.chcmatt.katelyn.commands.GenericCommand;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
@@ -20,11 +25,13 @@ public class CommandInfo<T extends GenericCommand>
 	private boolean isVoiceOnly;
 	@Getter(AccessLevel.NONE)
 	private boolean requiresArgs;
+	private HashMap<String, Method> methods;
 	private Class<T> commandClass;
 	
 	@SuppressWarnings("unchecked")
 	public CommandInfo(String name, String[] aliases, String desc, String syntax,
-			boolean adminOnly, boolean opOnly, boolean voiceOnly, boolean requiresArgs, Class<?> commandClass)
+			boolean adminOnly, boolean opOnly, boolean voiceOnly, boolean requiresArgs,
+			HashMap<String, Method> methods, Class<? extends GenericCommand> commandClass)
 	{
 		this.name = name;
 		this.aliases = aliases;
@@ -34,11 +41,37 @@ public class CommandInfo<T extends GenericCommand>
 		this.isOpOnly = opOnly;
 		this.isVoiceOnly = voiceOnly;
 		this.requiresArgs = requiresArgs;
+		this.methods = methods;
 		this.commandClass = (Class<T>)commandClass;
 	}
 	
 	public boolean requiresArgs()
 	{
 		return requiresArgs;
+	}
+	
+	public boolean hasSubCommands()
+	{
+		return methods.size() > 1;
+	}
+	
+	protected Sub getSub(String name)
+	{
+		Command.Sub sub = methods.get(name).getAnnotation(Command.Sub.class);
+		return new Sub(sub.adminOnly(), sub.requiresArgs());
+	}
+	
+	@AllArgsConstructor
+	protected class Sub
+	{
+		@Getter
+		private boolean isAdminOnly;
+		@Getter(AccessLevel.NONE)
+		private boolean requiresArgs;
+		
+		public boolean requiresArgs()
+		{
+			return requiresArgs;
+		}
 	}
 }

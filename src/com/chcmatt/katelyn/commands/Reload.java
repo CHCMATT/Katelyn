@@ -14,7 +14,6 @@ public class Reload extends GenericCommand
 		super(event);
 	}
 	
-	@Override
 	public void execute()
 	{
 		//bot.getCommandRegistry().parseAnnotations();
