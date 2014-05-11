@@ -3,6 +3,8 @@ package com.chcmatt.katelyn.handling;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.chcmatt.katelyn.commands.Command;
 import com.chcmatt.katelyn.commands.GenericCommand;
 
@@ -55,18 +57,51 @@ public class CommandInfo<T extends GenericCommand>
 		return methods.size() > 1;
 	}
 	
-	protected Sub getSub(String name)
+	public boolean hasSub(String name)
 	{
-		Command.Sub sub = methods.get(name).getAnnotation(Command.Sub.class);
-		return new Sub(sub.adminOnly(), sub.requiresArgs());
+		return getSub(name) != null;
+	}
+	
+	protected HashMap<String, Sub> getSubs()
+	{
+		HashMap<String, Sub> subs = new HashMap<>();
+		for (String key : methods.keySet())
+		{
+			if (!key.equals("DEFAULT"))
+			{
+				Command.Sub sub = methods.get(key).getAnnotation(Command.Sub.class);
+				subs.put(key, new Sub(sub.name(), sub.alias(), sub.adminOnly(), sub.requiresArgs()));
+			}
+		}
+		return subs;
+	}
+	
+	public Sub getSub(String name)
+	{
+		if (name.equals("DEFAULT"))
+			return null;
+		else if (methods.containsKey(name))
+			return getSubs().get(name);
+		else
+		{
+			for (Sub sub : getSubs().values())
+			{
+				if (ArrayUtils.contains(sub.getAliases(), name))
+					return sub;
+			}
+			return null;
+		}
 	}
 	
 	@AllArgsConstructor
 	protected class Sub
 	{
 		@Getter
+		private String name;
+		@Getter
+		private String[] aliases;
+		@Getter
 		private boolean isAdminOnly;
-		@Getter(AccessLevel.NONE)
 		private boolean requiresArgs;
 		
 		public boolean requiresArgs()

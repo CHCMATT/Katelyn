@@ -31,6 +31,7 @@ public @interface Command
 	public @interface Sub
 	{
 		String name();
+		String[] alias() default {};
 		boolean requiresArgs() default false;
 		boolean adminOnly() default false;
 	}

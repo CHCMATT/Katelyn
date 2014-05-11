@@ -118,14 +118,15 @@ public class CommandRegistry<T extends GenericCommand>
 		if (info.hasSubCommands() && !event.hasNoArgs())
 		{
 			String possibleSub = event.getArgumentList().get(0);
-			if (info.getMethods().containsKey(possibleSub))
+			if (info.hasSub(possibleSub))
 			{
+				CommandInfo<T>.Sub sub = info.getSub(possibleSub);
 				event.setArguments(event.getArgRange(1));
-				method = info.getMethods().get(possibleSub);
+				method = info.getMethods().get(sub.getName());
 				
-				if (info.getSub(possibleSub).isAdminOnly() && !event.getUser().isAdmin())
+				if (sub.isAdminOnly() && !event.getUser().isAdmin())
 					return noPermissionError;
-				if (info.getSub(possibleSub).requiresArgs() && event.hasNoArgs())
+				if (sub.requiresArgs() && event.hasNoArgs())
 					return needsArgsError.replace("command", "subcommand") + info.getSyntax();
 			}
 		}
