@@ -77,7 +77,7 @@ public class CommandRegistry<T extends GenericCommand>
 					map.put("DEFAULT", method);
 			}
 		}
-		if (!map.containsKey("DEFAULT"))
+		if (!map.containsKey("DEFAULT") && !cls.getAnnotation(Command.class).requiresArgs())
 		{
 			try
 			{
