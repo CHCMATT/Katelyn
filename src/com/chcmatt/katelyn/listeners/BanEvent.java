@@ -18,7 +18,7 @@ public class BanEvent extends ListenerAdapter<PircBotX>
 	public void onSetChannelBan(SetChannelBanEvent<PircBotX> event)
 	{
 		// Send the debug(?) message
-		event.getBot().sendIRC().action("#Katelyn","Channel ban was set on: "+Colors.setBold(event.getHostmask())+" at "+new SimpleDateFormat(Colors.setBold("h:mm:ss a")).format(new Date())+" in channel "+event.getChannel().getName());
+		//event.getBot().sendIRC().action("#Katelyn","Channel ban was set on: "+Colors.setBold(event.getHostmask())+" at "+new SimpleDateFormat(Colors.setBold("h:mm:ss a")).format(new Date())+" in channel "+event.getChannel().getName());
 		
 		// Get the list of ban exempts from the config (hacky way)
 		@SuppressWarnings("unchecked")
@@ -46,7 +46,7 @@ public class BanEvent extends ListenerAdapter<PircBotX>
 		event.getChannel().send().unBan(event.getHostmask());
 		
 		// Kick and Ban the banner (*!*@banner-host)
-		event.getChannel().send().ban(event.getUser().getHostmask());
-		event.getChannel().send().kick(event.getUser(), "Please don\'t try to ban "+Colors.setBold(event.getHostmask())+"!");
+		//event.getChannel().send().ban(event.getUser().getHostmask());
+		//event.getChannel().send().kick(event.getUser(), "Please don\'t try to ban "+Colors.setBold(event.getHostmask())+"!");
 	}
 }

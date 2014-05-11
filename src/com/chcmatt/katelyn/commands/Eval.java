@@ -34,11 +34,11 @@ public class Eval extends GenericCommand
 		}
 		catch (EvalError e)
 		{
-			event.respondToUser(Colors.setColor("An error occurred during evaluation", Colors.RED));
+			event.respondToUser(Colors.setColor("An error occurred during evaluation.", Colors.RED));
 			e.printStackTrace();
 		}
 
 		if (!result.toLowerCase().contains("pass") && !eval.toLowerCase().contains("pass"))
-			event.respond(result);
+			event.respondToUser(Colors.setColor("An error occurred during evaluation.", Colors.RED));
 	}
 }
