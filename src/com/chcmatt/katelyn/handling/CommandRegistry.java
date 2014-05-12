@@ -177,7 +177,7 @@ public class CommandRegistry<T extends GenericCommand>
 	public CommandInfo<T> getCommandInfo(String name)
 	{
 		for (CommandInfo<T> info : commands)
-			if (info.getName().equals(name))
+			if (info.getName().equals(name) || ArrayUtils.contains(info.getAliases(), name))
 				return info;
 		
 		return null;
