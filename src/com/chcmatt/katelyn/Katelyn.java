@@ -3,20 +3,18 @@ package com.chcmatt.katelyn;
 import org.pircbotx.PircBotX;
 import org.pircbotx.Configuration;
 import org.pircbotx.cap.EnableCapHandler;
-import org.pircbotx.hooks.Listener;
-import org.reflections.Reflections;
-
-import com.chcmatt.katelyn.listeners.AddListener;
 import com.chcmatt.katelyn.utils.Config;
-import com.chcmatt.katelyn.utils.Utils;
 
 public class Katelyn
 {
 
 	public static void main(String[] args) throws Exception
 	{
-		Config c = new Config("config.json");
-		String nsPass  = c.getMap().get("passwords").get("nickserv");
+		// You can remove all of this commented code once you get your information from it into the config file
+		
+		
+		
+/*		String nsPass  = c.getMap().get("passwords").get("nickserv");
 		String bncPass = c.getMap().get("passwords").get("bouncer");
 		
 		Configuration.Builder<PircBotX> builder = new Configuration.Builder<PircBotX>()
@@ -51,29 +49,17 @@ public class Katelyn
 							"#CHCMATT", "#Katelyn", "#SC-Staff",
 							"#Survival-Craft");
 		
-		//.setAdminChannels("#Katelyn");
+		//.setAdminChannels("#Katelyn");*/
 		
-		// All this just adds any class with @AddListener to the listeners
-		try
- 		{
-			Reflections reflections = new Reflections(Utils.getPackageName(AddListener.class));
-			for (Class<?> cls : reflections.getTypesAnnotatedWith(AddListener.class))
-			{
-				if (cls.getAnnotation(AddListener.class).value())
-				{
-					@SuppressWarnings("unchecked")
-					Listener<PircBotX> listener = (Listener<PircBotX>) cls.newInstance();
-					builder.addListener(listener);
-				}
-			}
- 		}
- 		catch (IllegalAccessException | InstantiationException e)
- 		{
- 			e.printStackTrace();
- 		}
+		Config c = new Config("config.json");
 		
-		// Need to call buildConfiguration() down here since adding listeners was part of the Builder
-		PircBotX bot = new PircBotX(builder.buildConfiguration());
+ 		Configuration.Builder<PircBotX> builder =
+ 				new Configuration.Builder<PircBotX>(c.buildBotConfiguration())
+ 				
+ 				.addCapHandler(new EnableCapHandler("extended-join", true))
+ 				.addCapHandler(new EnableCapHandler("account-notify", true));
+
+        PircBotX bot = new PircBotX(builder.buildConfiguration());
 
 		try
 		{
@@ -84,5 +70,4 @@ public class Katelyn
 			ex.printStackTrace();
 		}
 	}
-
 }
