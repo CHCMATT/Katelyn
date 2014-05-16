@@ -125,6 +125,8 @@ public class Configuration<B extends PircBotX> {
 	protected final List<String> blockedChannels;
 	protected final String factoidPrefix;
 	protected final String ownerAccount;
+	//New data added by CHCMATT
+	protected final ImmutableMap<String, String> adminChannels;
 
 	/**
 	 * Use {@link Configuration.Builder#build() }.

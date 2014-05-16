@@ -181,7 +181,7 @@ public class Config
 			e.printStackTrace();
 		}
 		return null;
-	}
+	} 
 	
 	private void updateFileFromMap(Map<String, Map<String, Object>> newMap)
 	{
