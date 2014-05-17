@@ -126,7 +126,7 @@ public class Configuration<B extends PircBotX> {
 	protected final String factoidPrefix;
 	protected final String ownerAccount;
 	//New data added by CHCMATT
-	protected final ImmutableMap<String, String> adminChannels;
+	protected final List<String> adminChannels;
 
 	/**
 	 * Use {@link Configuration.Builder#build() }.
@@ -205,6 +205,8 @@ public class Configuration<B extends PircBotX> {
 		this.blockedChannels = builder.getBlockedChannels();
 		this.factoidPrefix = builder.getFactoidPrefix();
 		this.ownerAccount = builder.getOwnerAccount();
+		//Newly added data by CHCMATT
+		this.adminChannels = builder.getAdminChannels();
 	}
 
 	@Accessors(chain = true)
@@ -416,6 +418,11 @@ public class Configuration<B extends PircBotX> {
 			capHandlers.add(new EnableCapHandler("multi-prefix", true));
 			channelModeHandlers.addAll(InputParser.DEFAULT_CHANNEL_MODE_HANDLERS);
 		}
+		//Newly added data by CHCMATT
+		/**
+		 * The list of channels that admins are located in
+		 */
+		protected List<String> adminChannels = new ArrayList<>();
 
 		/**
 		 * Copy values from an existing Configuration.
@@ -468,6 +475,8 @@ public class Configuration<B extends PircBotX> {
 			this.blockedChannels = configuration.getBlockedChannels();
 			this.factoidPrefix = configuration.getFactoidPrefix();
 			this.ownerAccount = configuration.getOwnerAccount();
+			//Added by CHCMATT
+			this.adminChannels = configuration.getAdminChannels();
 		}
 		/**
 		 * Copy values from another builder. 
@@ -520,6 +529,8 @@ public class Configuration<B extends PircBotX> {
 			this.blockedChannels = otherBuilder.getBlockedChannels();
 			this.factoidPrefix = otherBuilder.getFactoidPrefix();
 			this.ownerAccount = otherBuilder.getOwnerAccount();
+			//Added by CHCMATT
+			this.adminChannels = otherBuilder.getAdminChannels();
 		}
 
 		/**
