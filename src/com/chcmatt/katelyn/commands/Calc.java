@@ -17,7 +17,7 @@ public class Calc extends GenericCommand
 	}
 
 	public void execute()
-	{
+	{ 
 		try
 		{
 			String response = WebUtils.getCalculation(event.getArguments());
