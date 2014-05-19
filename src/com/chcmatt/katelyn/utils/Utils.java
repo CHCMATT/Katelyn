@@ -42,6 +42,7 @@ public class Utils
 			i.eval("import org.apache.commons.lang3.StringUtils");
 			i.eval("import java.text.*");
 			i.eval("import java.util.*");
+			i.eval("import com.chcmatt.katelyn.utils.Config");
 		}
 		catch (EvalError e)
 		{
