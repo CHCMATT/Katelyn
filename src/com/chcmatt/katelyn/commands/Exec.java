@@ -30,6 +30,7 @@ public class Exec extends GenericCommand
 		}
 		catch (EvalError e)
 		{
+			//Let the user know that an error occurred (for debugging purposes)
 			e.printStackTrace();
 			event.respondToUser("Error while running \"" + arg + "\"");
 		}

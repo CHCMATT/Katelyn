@@ -34,6 +34,7 @@ public class Eval extends GenericCommand
 		}
 		catch (EvalError e)
 		{
+			//Let the user know that an error occurred (for debugging purposes)
 			event.respondToUser(Colors.setColor("An error occurred during evaluation.", Colors.RED));
 			e.printStackTrace();
 		}
@@ -41,6 +42,7 @@ public class Eval extends GenericCommand
 		if (!result.toLowerCase().contains("pass") && !eval.toLowerCase().contains("pass"))
 			event.respond(result);
 		else
+			//Let the user know that a password was found in the message, and that it won't be sent.
 			event.respondToUser(Colors.setColor("That evaluation returned a password, this has been automatically rejected. Try again with a new evaluation statement.", Colors.RED));
 	}
 }

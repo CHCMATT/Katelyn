@@ -53,11 +53,13 @@ public class IP extends GenericCommand
 		}
 		catch (IOException e)
 		{
+			//Let the user know that an error occurred when connecting to geo.liamstanley.io
 			event.respondToUser("Error while connecting to URL.");
 			e.printStackTrace();
 		}
 		catch (ParseException e)
 		{
+			//Let the user know that an error occurred when getting one of the results. (for debugging purposes)
 			event.respondToUser("Error while parsing results.");
 			e.printStackTrace();
 		}

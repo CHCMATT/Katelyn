@@ -35,6 +35,7 @@ public class Info extends GenericCommand
 		}
 		catch (IOException | ParseException | IllegalArgumentException e)
 		{
+			//Let the user know that an error occurred (for debugging purposes)
 			event.respondToUser(Colors.setColor("An error occurred while getting general info.", Colors.RED));
 			e.printStackTrace();
 		}

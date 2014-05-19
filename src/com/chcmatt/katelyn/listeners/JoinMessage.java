@@ -24,7 +24,6 @@ public class JoinMessage extends ListenerAdapter<PircBotX>
 				Map<String, String> results = WebUtils.getLocationData(address);
 				String region =		results.get("region_name");
 				String country =	results.get("country_name");
-				//if (event.getChannel().getName().equals(bot.getAdminChannel()))
 				if (results.get("region_name").equals("N/A"))
 					event.getChannel().send().message("User is connecting from "+Colors.setBold(country)+".");
 				else

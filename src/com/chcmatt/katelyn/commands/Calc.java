@@ -25,6 +25,7 @@ public class Calc extends GenericCommand
 		}
 		catch (IOException | ParseException | IllegalArgumentException e)
 		{
+			//Let the user know that an error occurred (for debugging purposes)
 			event.respondToUser("An error occurred while calculating: " + event.getArguments());
 			e.printStackTrace();
 		}
