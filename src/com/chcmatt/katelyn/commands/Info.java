@@ -30,7 +30,7 @@ public class Info extends GenericCommand
 			String noticePrefix = config.getPrefixes().inverse().get("NOTICE");
 			String helpCommand = new com.chcmatt.katelyn.utils.Config("config.json").getString("general-info", "help-command");
 			String latestTag = WebUtils.getGithubTags().get(0).get("name").toString();
-			String response = Colors.setBold(event.getUser().getNick()) + ": Hi, I'm " + bot.getNick() + " and I'm a bot! I'm running " + Colors.setBold("PircBotX 2.0") + " on GitHub Release " + Colors.setBold(latestTag) + ". " + Colors.setBold(config .getOwnerAccount()) + " is my owner! Use "+Colors.setBold(noticePrefix+helpCommand)+" to get a notice of a list of all of my commands that are available to you.";
+			String response = Colors.setBold(event.getUser().getNick()) + ": Hi, I'm " + bot.getNick() + " and I'm a bot! I'm running " + Colors.setBold("PircBotX "+bot.VERSION) + " on GitHub Release " + Colors.setBold(latestTag) + ". " + Colors.setBold(config .getOwnerAccount()) + " is my owner! Use "+Colors.setBold(noticePrefix+helpCommand)+" to get a notice of a list of all of my commands that are available to you.";
 			event.respond(response);
 		}
 		catch (IOException | ParseException | IllegalArgumentException e)
