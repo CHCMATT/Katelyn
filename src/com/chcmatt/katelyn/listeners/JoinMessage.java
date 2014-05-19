@@ -26,9 +26,9 @@ public class JoinMessage extends ListenerAdapter<PircBotX>
 				String country =	results.get("country_name");
 				//if (event.getChannel().getName().equals(bot.getAdminChannel()))
 				if (results.get("region_name").equals("N/A"))
-					event.getChannel().send().message(Colors.setColor("User is connecting from "+Colors.setBold(country)+".",Colors.DARK_GREEN));
+					event.getChannel().send().message("User is connecting from "+Colors.setBold(country)+".");
 				else
-					event.getChannel().send().message(Colors.setColor("User is connecting from "+Colors.setBold(region+", "+country)+".",Colors.DARK_GREEN));
+					event.getChannel().send().message("User is connecting from "+Colors.setBold(region+", "+country)+".");
 			}
 
 			catch (IOException e)
