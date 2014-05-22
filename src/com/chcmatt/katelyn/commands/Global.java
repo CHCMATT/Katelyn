@@ -8,7 +8,7 @@ import org.pircbotx.Colors;
 import org.pircbotx.PircBotX;
 
 import com.chcmatt.katelyn.handling.CommandEvent;
-@Command(name="global", alias={"g","gl"}, desc="Sends a global command.", syntax="global <subCommand> [sumCommandParameters]", requiresArgs=true, adminOnly=true)
+@Command(name="global", alias={"g","gl"}, desc="Sends a global command.", syntax="global <subCommand> [sumCommandParameters]", requiresArgs=true, minGroup="admin")
 public class Global extends GenericCommand
 { 
 	

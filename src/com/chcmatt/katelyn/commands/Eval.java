@@ -11,7 +11,7 @@ import bsh.Interpreter;
 import com.chcmatt.katelyn.utils.Utils;
 import com.chcmatt.katelyn.handling.CommandEvent;
 
-@Command(name="eval", desc="Evaluate a method within PircBotX", syntax="eval <code to evaluate>", requiresArgs = true, adminOnly=true)
+@Command(name="eval", desc="Evaluate a method within PircBotX", syntax="eval <code to evaluate>", requiresArgs = true, minGroup="mod")
 public class Eval extends GenericCommand
 {
 

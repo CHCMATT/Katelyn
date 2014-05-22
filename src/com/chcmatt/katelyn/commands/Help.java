@@ -40,8 +40,12 @@ public class Help extends GenericCommand
 			Collections.sort(commandList);
 			Collections.sort(adminCommandList);
 			event.respond(Colors.setBold("Commands: ") + StringUtils.join(commandList, ", "));
-			if (user.isAdmin())
-				event.respondToUser(Colors.setBold("Admin Commands: ") + StringUtils.join(adminCommandList, ", "));
+			if (bot.getPermissions().getGroupNames().contains("mod") || bot.getPermissions().getGroupNames().contains("admin") || bot.getPermissions().getGroupNames().contains("owner"))
+				event.respondToUser(Colors.setBold("Moderator only Commands: ") + StringUtils.join(adminCommandList, ", "));
+			if (bot.getPermissions().getGroupNames().contains("admin") || bot.getPermissions().getGroupNames().contains("owner"))
+				event.respondToUser(Colors.setBold("Admin only Commands: ") + StringUtils.join(adminCommandList, ", "));
+			if (bot.getPermissions().getGroupNames().contains("owner"))
+				event.respondToUser(Colors.setBold("Owner only Commands: ") + StringUtils.join(adminCommandList, ", "));
 		}
 		else
 		{

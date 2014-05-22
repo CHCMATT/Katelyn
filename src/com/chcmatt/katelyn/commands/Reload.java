@@ -5,7 +5,7 @@ import org.pircbotx.Colors;
 
 import com.chcmatt.katelyn.handling.CommandEvent;
 
-@Command(name="reload", desc="Reloads all commands from the disc.", adminOnly=true)
+@Command(name="reload", desc="Reloads all commands from the disc.", minGroup = "admin")
 public class Reload extends GenericCommand
 {
 	

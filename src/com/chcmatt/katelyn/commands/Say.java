@@ -5,7 +5,7 @@ import org.pircbotx.PircBotX;
 
 import com.chcmatt.katelyn.handling.CommandEvent;
 
-@Command(name="say", desc="Sends message to channel", syntax="say <message>", adminOnly=true)
+@Command(name="say", desc="Sends message to channel", syntax="say <message>", minGroup = "admin")
 public class Say extends GenericCommand
 {
 	

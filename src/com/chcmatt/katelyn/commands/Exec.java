@@ -8,7 +8,7 @@ import bsh.Interpreter;
 import com.chcmatt.katelyn.utils.Utils;
 import com.chcmatt.katelyn.handling.CommandEvent;
 
-@Command(name="exec", desc="Execute a method within PircBotX", syntax="exec <code to execute>", requiresArgs=true, adminOnly=true)
+@Command(name="exec", desc="Execute a method within PircBotX", syntax="exec <code to execute>", requiresArgs=true, minGroup="admin")
 public class Exec extends GenericCommand
 {
 	

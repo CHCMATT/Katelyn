@@ -5,7 +5,7 @@ import org.pircbotx.PircBotX;
 
 import com.chcmatt.katelyn.handling.CommandEvent;
 
-@Command(name="cycle", desc="Parts and rejoins current or specified channel", syntax="cycle [#channel]", adminOnly=true)
+@Command(name="cycle", desc="Parts and rejoins current or specified channel", syntax="cycle [#channel]", minGroup="admin")
 public class Cycle extends GenericCommand
 {
 	

@@ -5,7 +5,7 @@ import org.pircbotx.PircBotX;
 
 import com.chcmatt.katelyn.handling.CommandEvent;
 
-@Command(name="raw", desc="Sends a specified command to the IRC server", syntax="raw <command>", adminOnly=true)
+@Command(name="raw", desc="Sends a specified command to the IRC server", syntax="raw <command>", minGroup = "admin")
 public class Raw extends GenericCommand
 {
 
