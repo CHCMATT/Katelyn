@@ -14,6 +14,7 @@ import org.reflections.Reflections;
 
 import com.chcmatt.katelyn.commands.Command;
 import com.chcmatt.katelyn.commands.GenericCommand;
+import com.chcmatt.katelyn.utils.Permissions.Group;
 import com.chcmatt.katelyn.utils.Utils;
 import com.sun.xml.internal.txw2.IllegalAnnotationException;
 
@@ -52,7 +53,7 @@ public class CommandRegistry<T extends GenericCommand>
 
 				commands.add(new CommandInfo<T>(
 						cmd.name(), cmd.alias(), cmd.desc(), cmd.syntax(),
-						cmd.adminOnly(), cmd.opOnly(), cmd.voiceOnly(), cmd.requiresArgs(),  methodMap, cls)
+						cmd.minGroup(), cmd.opOnly(), cmd.voiceOnly(), cmd.requiresArgs(),  methodMap, cls)
 						);
 			}
 		}
@@ -105,8 +106,8 @@ public class CommandRegistry<T extends GenericCommand>
 		Class<T> cls = getCommandClass(event.getCommandName());
 		CommandInfo<T> info = getCommandInfo(event.getCommandName());
 		
-		// If the command is admin only and the user isn't admin, return an error
-		if (info.isAdminOnly() && !event.getUser().isAdmin())
+		Group minGroup = event.getBot().getPermissions().getGroup(info.getMinGroup());
+		if (minGroup.getRank() < event.getUser().getGroup().getRank())
 			return noPermissionError;
 		
 		if (event.getChannel() != null) // If the channel is null, its a private message command
@@ -133,7 +134,8 @@ public class CommandRegistry<T extends GenericCommand>
 				event.setArguments(event.getArgRange(1));
 				method = info.getMethods().get(sub.getName());
 				
-				if (sub.isAdminOnly() && !event.getUser().isAdmin())
+				Group minGroupSub = event.getBot().getPermissions().getGroup(sub.getMinGroup());
+				if (minGroupSub.getRank() < event.getUser().getGroup().getRank())
 					return noPermissionError;
 				if (sub.requiresArgs() && event.hasNoArgs())
 					return needsArgsError.replace("command", "subcommand") + info.getSyntax();

@@ -20,6 +20,7 @@ package org.pircbotx;
 
 import com.chcmatt.katelyn.commands.GenericCommand;
 import com.chcmatt.katelyn.handling.CommandRegistry;
+import com.chcmatt.katelyn.utils.Permissions;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.primitives.Ints;
 
@@ -96,6 +97,8 @@ public class PircBotX implements Comparable<PircBotX> {
 	protected final InputParser inputParser;
 	@Getter
 	protected final CommandRegistry<GenericCommand> commandRegistry; // Added by R2D2Warrior
+	@Getter
+	protected final Permissions permissions; // Added by R2D2Warrior
 	/**
 	 * User-Channel mapper
 	 */
@@ -143,6 +146,7 @@ public class PircBotX implements Comparable<PircBotX> {
 		this.dccHandler = configuration.getBotFactory().createDccHandler(this);
 		this.inputParser = configuration.getBotFactory().createInputParser(this);
 		this.commandRegistry = configuration.getBotFactory().createCommandRegistry(this);
+		this.permissions = new Permissions();
 	}
 
 	/**
