@@ -19,8 +19,8 @@ public @interface Command
 	String syntax() default "";
 	/** If the command requires any arguments or not. Default <code>false</code>*/
 	boolean requiresArgs() default false;
-	/** If the command requires admin status to use. Default <code>false</code>*/
-	boolean adminOnly() default false;
+	/** The name of the lowest group that can use this command*/
+	String minGroup() default "DEFAULT";
 	/** If the command requires operator status in a channel. Ignored in private message commands. Default <code>false</code>*/
 	boolean opOnly() default false;
 	/** If the command requires voice status in a channel. Ignored in private message commands. Default <code>false</code>*/
@@ -33,7 +33,7 @@ public @interface Command
 		String name();
 		String[] alias() default {};
 		boolean requiresArgs() default false;
-		boolean adminOnly() default false;
+		String minGroup() default "DEFAULT";
 	}
 	
 	@Target(ElementType.METHOD)

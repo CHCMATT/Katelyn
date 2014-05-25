@@ -22,7 +22,7 @@ public class CommandInfo<T extends GenericCommand>
 	private String[] aliases;
 	private String desc;
 	private String syntax;
-	private boolean isAdminOnly;
+	private String minGroup;
 	private boolean isOpOnly;
 	private boolean isVoiceOnly;
 	@Getter(AccessLevel.NONE)
@@ -32,14 +32,14 @@ public class CommandInfo<T extends GenericCommand>
 	
 	@SuppressWarnings("unchecked")
 	public CommandInfo(String name, String[] aliases, String desc, String syntax,
-			boolean adminOnly, boolean opOnly, boolean voiceOnly, boolean requiresArgs,
+			String minGroup, boolean opOnly, boolean voiceOnly, boolean requiresArgs,
 			HashMap<String, Method> methods, Class<? extends GenericCommand> commandClass)
 	{
 		this.name = name;
 		this.aliases = aliases;
 		this.desc = desc;
 		this.syntax = syntax;
-		this.isAdminOnly = adminOnly;
+		this.minGroup = minGroup;
 		this.isOpOnly = opOnly;
 		this.isVoiceOnly = voiceOnly;
 		this.requiresArgs = requiresArgs;
@@ -70,7 +70,7 @@ public class CommandInfo<T extends GenericCommand>
 			if (!key.equals("DEFAULT"))
 			{
 				Command.Sub sub = methods.get(key).getAnnotation(Command.Sub.class);
-				subs.put(key, new Sub(sub.name(), sub.alias(), sub.adminOnly(), sub.requiresArgs()));
+				subs.put(key, new Sub(sub.name(), sub.alias(), sub.minGroup(), sub.requiresArgs()));
 			}
 		}
 		return subs;
@@ -101,7 +101,7 @@ public class CommandInfo<T extends GenericCommand>
 		@Getter
 		private String[] aliases;
 		@Getter
-		private boolean isAdminOnly;
+		private String minGroup;
 		private boolean requiresArgs;
 		
 		public boolean requiresArgs()

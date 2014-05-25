@@ -8,4 +8,4 @@ The website for Katelyn is located here: http://chcmatt.com/Katelyn.php
 If you have any questions, CHCMATT can be contacted on IRC at __EsperNet__ in __#Katelyn__.
 A __Webchat__ client for __EsperNet__ can be found here: http://webchat.esper.net/?channels=Katelyn
 
-R2D2Warrior's Version of the PircBotX: https://github.com/R2D2Warrior/C3P0J
+R2D2Warrior's Version of the PircBotX bot: https://github.com/R2D2Warrior/C3P0J

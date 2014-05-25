@@ -25,7 +25,7 @@ public class Ping extends GenericCommand
 		event.respond(user.getNick() + ": " + Colors.setColor("Sub-PONG!", Colors.RED + Colors.BOLD));
 	}
 	
-	@Command.Sub(name="sub2", adminOnly=true)
+	@Command.Sub(name="sub2", minGroup="mod")
 	public void subPing2()
 	{
 		event.respond(user.getNick() + ": " + Colors.setColor("Sub2-PONG!", Colors.RED + Colors.BOLD));

@@ -33,12 +33,6 @@ public class Global extends GenericCommand
 		event.respond(user.getNick()+": "+chans);
 	}
 	
-	@Command.Sub(name="sub2", adminOnly=true)
-	public void subPing2() 
-	{
-		event.respond(user.getNick() + ": " + Colors.setColor("Sub2-PONG!", Colors.RED + Colors.BOLD));
-	}
-	
 	@Command.Sub(name="sub3", requiresArgs=true)
 	public void subPing3()
 	{
