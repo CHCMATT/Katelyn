@@ -45,7 +45,7 @@ public class Help extends GenericCommand
 				//checks if user is owner
 				else if (event.getUser().getGroup().getName().equals("owner"))
 					ownerCommandList.add(info.getName());
-				else
+				else if (event.getUser().getGroup().getName().equals("DEFAULT"))
 					commandList.add(info.getName());
 			}
 			//Organizes the commands into alphabetical order
