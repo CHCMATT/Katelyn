@@ -29,23 +29,11 @@ public class Help extends GenericCommand
 		{
 			event.respond(Colors.setBold("Valid prefixes: ") + "\"" + prePublic + "\" to public message, \"" + prePrivate +"\" to private notice.");
 			List<String> commandList = new ArrayList<String>();
-			List<String> adminCommandList = new ArrayList<String>();
 			for (CommandInfo<GenericCommand> info : bot.getCommandRegistry().getCommands())
-			{
-				if (!info.isAdminOnly())
-					commandList.add(info.getName());
-				else if (user.isAdmin())
-					adminCommandList.add(info.getName());
-			}
+				commandList.add(info.getName());
+
 			Collections.sort(commandList);
-			Collections.sort(adminCommandList);
 			event.respond(Colors.setBold("Commands: ") + StringUtils.join(commandList, ", "));
-			if (bot.getPermissions().getGroupNames().contains("mod") || bot.getPermissions().getGroupNames().contains("admin") || bot.getPermissions().getGroupNames().contains("owner"))
-				event.respondToUser(Colors.setBold("Moderator only Commands: ") + StringUtils.join(adminCommandList, ", "));
-			if (bot.getPermissions().getGroupNames().contains("admin") || bot.getPermissions().getGroupNames().contains("owner"))
-				event.respondToUser(Colors.setBold("Admin only Commands: ") + StringUtils.join(adminCommandList, ", "));
-			if (bot.getPermissions().getGroupNames().contains("owner"))
-				event.respondToUser(Colors.setBold("Owner only Commands: ") + StringUtils.join(adminCommandList, ", "));
 		}
 		else
 		{
