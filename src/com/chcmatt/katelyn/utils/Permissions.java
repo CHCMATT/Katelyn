@@ -39,7 +39,8 @@ public class Permissions
 			Map<String, Object> group = (Map<String, Object>) groupConfig.get(groupName);
 			int rank = (int) (long) group.get("rank");
 			List<String> users = (List<String>) group.get("users");
-			groups.set(rank-1, new Group(groupName, users, rank));
+			int spot = (rank-1 > groups.size()) ? groups.size()-1 : rank-1;
+			groups.set(spot, new Group(groupName, users, rank));
 		}
 		return groups;
 	}
