@@ -41,13 +41,13 @@ public class Help extends GenericCommand
 			Collections.sort(ownerCommandList);
 			
 			event.respond(Colors.setBold("Commands: ") + StringUtils.join(commandList, ", "));
-			if (user.getGroup().getName().toLowerCase().equals("mod") || user.getGroup().getName().toLowerCase().equals("admin") || user.getGroup().getName().toLowerCase().equals("owner"))
+			if (user.getGroup().getName().equals("mod") || user.getGroup().getName().equals("admin") || user.getGroup().getName().equals("owner"))
 				event.respondToUser(Colors.setBold("Moderator only Commands: ") + StringUtils.join(modCommandList, ", "));
 			
-			if (user.getGroup().getName().toLowerCase().equals("admin") || user.getGroup().getName().toLowerCase().equals("owner"))
+			if (user.getGroup().getName().equals("admin") || user.getGroup().getName().equals("owner"))
 				event.respondToUser(Colors.setBold("Admin only Commands: ") + StringUtils.join(adminCommandList, ", "));
 			
-			if (user.getGroup().getName().toLowerCase().equals("owner"))
+			if (user.getGroup().getName().equals("owner"))
 				event.respondToUser(Colors.setBold("Owner only Commands: ") + StringUtils.join(ownerCommandList, ", "));
 		}
 		else
