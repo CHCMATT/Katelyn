@@ -29,25 +29,11 @@ public class Help extends GenericCommand
 		{
 			event.respond(Colors.setBold("Valid prefixes: ") + "\"" + prePublic + "\" to public message, \"" + prePrivate +"\" to private notice.");
 			//Create ArrayList for each set of commands
-			List<String> commandList = new ArrayList<String>();
-			List<String> modCommandList = new ArrayList<String>();
-			List<String> adminCommandList = new ArrayList<String>();
-			List<String> ownerCommandList = new ArrayList<String>();
+			List<String> commandList = 		bot.getCommandRegistry().getCommandsMinGroup("default");
+			List<String> modCommandList = 	bot.getCommandRegistry().getCommandsMinGroup("mod");
+			List<String> adminCommandList = bot.getCommandRegistry().getCommandsMinGroup("admin");
+			List<String> ownerCommandList = bot.getCommandRegistry().getCommandsMinGroup("owner");
 			
-			for (CommandInfo<GenericCommand> info : bot.getCommandRegistry().getCommands())
-			{
-				//check if user is mod
-				if (event.getUser().getGroup().getName().equals("mod"))
-					modCommandList.add(info.getName());
-				//checks if user is admin
-				else if (event.getUser().getGroup().getName().equals("admin"))
-					adminCommandList.add(info.getName());
-				//checks if user is owner
-				else if (event.getUser().getGroup().getName().equals("owner"))
-					ownerCommandList.add(info.getName());
-				else if (event.getUser().getGroup().getName().equals("DEFAULT"))
-					commandList.add(info.getName());
-			}
 			//Organizes the commands into alphabetical order
 			Collections.sort(commandList);
 			Collections.sort(modCommandList);
@@ -55,13 +41,13 @@ public class Help extends GenericCommand
 			Collections.sort(ownerCommandList);
 			
 			event.respond(Colors.setBold("Commands: ") + StringUtils.join(commandList, ", "));
-			if (event.getUser().getGroup().getName().equals("mod") || bot.getPermissions().getGroupNames().contains("admin") || bot.getPermissions().getGroupNames().contains("owner"))
+			if (user.getGroup().getName().toLowerCase().equals("mod") || user.getGroup().getName().toLowerCase().equals("admin") || user.getGroup().getName().toLowerCase().equals("owner"))
 				event.respondToUser(Colors.setBold("Moderator only Commands: ") + StringUtils.join(modCommandList, ", "));
 			
-			if (bot.getPermissions().getGroupNames().contains("admin") || bot.getPermissions().getGroupNames().contains("owner"))
+			if (user.getGroup().getName().toLowerCase().equals("admin") || user.getGroup().getName().toLowerCase().equals("owner"))
 				event.respondToUser(Colors.setBold("Admin only Commands: ") + StringUtils.join(adminCommandList, ", "));
 			
-			if (bot.getPermissions().getGroupNames().contains("owner"))
+			if (user.getGroup().getName().toLowerCase().equals("owner"))
 				event.respondToUser(Colors.setBold("Owner only Commands: ") + StringUtils.join(ownerCommandList, ", "));
 		}
 		else
