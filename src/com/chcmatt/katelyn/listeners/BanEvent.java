@@ -1,11 +1,8 @@
 package com.chcmatt.katelyn.listeners;
  
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
  
-import org.pircbotx.Colors;
 import org.pircbotx.PircBotX;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.SetChannelBanEvent;
