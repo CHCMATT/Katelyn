@@ -16,24 +16,12 @@ public class Ping extends GenericCommand
 	@Command.Default
 	public void ping()
 	{
-		event.respond(user.getNick() + ": " + Colors.setBold("PONG!"));
-	}
-	
-	@Command.Sub(name="sub", alias={"s", "alias"})
-	public void subPing()
-	{
-		event.respond(user.getNick() + ": " + Colors.setColor("Sub-PONG!", Colors.RED + Colors.BOLD));
-	}
-	
-	@Command.Sub(name="sub2", minGroup="mod")
-	public void subPing2()
-	{
-		event.respond(user.getNick() + ": " + Colors.setColor("Sub2-PONG!", Colors.RED + Colors.BOLD));
-	}
-	
-	@Command.Sub(name="sub3", requiresArgs=true)
-	public void subPing3()
-	{
-		event.respond(event.getArguments() + ": " + Colors.setColor("Sub-PONG!", Colors.RED + Colors.BOLD));
+		
+		if (event.hasNoArgs())
+			event.respond(Colors.setBold(user.getNick()) + ": PONG!");
+		else if (userChannelDao.userExists(event.getArguments()))
+			event.respond(Colors.setBold(event.getArguments())+": PONG!");
+		else
+			event.respondToUser("Sorry, The user "+Colors.setBold(event.getArguments())+" does not exist in this channel.");
 	}
 }
