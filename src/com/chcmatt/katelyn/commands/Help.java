@@ -1,6 +1,5 @@
 package com.chcmatt.katelyn.commands;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -9,7 +8,6 @@ import org.pircbotx.PircBotX;
 import org.pircbotx.Colors;
 
 import com.chcmatt.katelyn.handling.CommandEvent;
-import com.chcmatt.katelyn.handling.CommandInfo;
 
 @Command(name="help", desc="Displays command list or command information", syntax="help [command]")
 public class Help extends GenericCommand
