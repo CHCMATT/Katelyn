@@ -132,14 +132,14 @@ public class OutputIRC {
 	 * the message by using the
 	 * <code>Colors</code> class.
 	 *
-	 * @param target The name of the channel or user nick to send to.
+	 * @param string The name of the channel or user nick to send to.
 	 * @param message The message to send.
 	 *
 	 * @see Colors
 	 */
-	public void message(String target, String message) {
-		checkArgument(StringUtils.isNotBlank(target), "Target '%s' is blank", target);
-		bot.sendRaw().rawLineSplit("PRIVMSG " + target + " :", message);
+	public void message(String string, String message) {
+		checkArgument(StringUtils.isNotBlank((CharSequence) string), "Target '%s' is blank", string);
+		bot.sendRaw().rawLineSplit("PRIVMSG " + string + " :", message);
 	}
 
 	/**
@@ -267,4 +267,5 @@ public class OutputIRC {
 	public void mode(String target, String mode) {
 		bot.sendRaw().rawLine("MODE " + target + " " + mode);
 	}
+
 }
