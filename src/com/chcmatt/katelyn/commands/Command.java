@@ -32,6 +32,7 @@ public @interface Command
 	{
 		String name();
 		String[] alias() default {};
+		String syntax() default "";
 		boolean requiresArgs() default false;
 		String minGroup() default "DEFAULT";
 	}
